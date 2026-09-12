@@ -18,25 +18,24 @@ a {
 }
 /* @FONTWARNING[{"type": "restricted", "family": "Freesentation-SemiBold", "weight": "400", "style": "normal", "allowsCrossOrigin": false}] */
 
-@font-face {
-  font-family: "Freesentation-SemiBold";
-  src: local("Freesentation-SemiBold");
-}
-/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-Regular", "weight": "400", "style": "normal", "allowsCrossOrigin": false}] */
-
-@font-face {
-  font-family: "Freesentation-Regular";
-  src: local("Freesentation-Regular");
-}
-/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-6SemiBold", "weight": "600", "style": "normal", "allowsCrossOrigin": false}] */
 
 @font-face {
   font-family: "Freesentation-6SemiBold";
-  src: local("Freesentation-6SemiBold");
+  src: url("./fonts/Freesentation-6SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
 }
-/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-5Medium", "weight": "500", "style": "normal", "allowsCrossOrigin": false}] */
+
+@font-face {
+  font-family: "Freesentation-4Regular";
+  src: url("./fonts/Freesentation-4Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
 
 @font-face {
   font-family: "Freesentation-5Medium";
-  src: local("Freesentation-5Medium");
+  src: url("./fonts/Freesentation-5Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
 }

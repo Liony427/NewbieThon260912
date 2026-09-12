@@ -19,18 +19,22 @@ a {
 /* @FONTWARNING[{"type": "restricted", "family": "Black Han Sans-Regular", "weight": "400", "style": "normal", "allowsCrossOrigin": false}] */
 
 @font-face {
-  font-family: "Black Han Sans-Regular";
-  src: local("Black Han Sans-Regular");
+  font-family: "BlackHanSans";
+  src: url("./fonts/BlackHanSans.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
-/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-SemiBold", "weight": "400", "style": "normal", "allowsCrossOrigin": false}] */
 
 @font-face {
-  font-family: "Freesentation-SemiBold";
-  src: local("Freesentation-SemiBold");
+  font-family: "Freesentation-6SemiBold";
+  src: url("./fonts/Freesentation-6SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
 }
-/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-Regular", "weight": "400", "style": "normal", "allowsCrossOrigin": false}] */
 
 @font-face {
-  font-family: "Freesentation-Regular";
-  src: local("Freesentation-Regular");
+  font-family: "Freesentation-4Regular";
+  src: url("./fonts/Freesentation-4Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }

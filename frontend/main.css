@@ -38,7 +38,7 @@
   top: 50px;
   left: 15px;
   width: 265px;
-  font-family: "Black Han Sans-Regular", Helvetica;
+  font-family: "BlackHanSans", Helvetica;
   color: #ffffff;
   font-size: 50px;
   text-align: center;
@@ -70,7 +70,7 @@
 .element-main .p {
   top: 318px;
   left: calc(50.00% - 106px);
-  font-family: "Freesentation-SemiBold", Helvetica;
+  font-family: "Freesentation-6SemiBold", Helvetica;
   color: transparent;
   font-size: 17px;
   line-height: 20.4px;
@@ -86,7 +86,7 @@
 }
 
 .element-main .text-wrapper-2 {
-  font-family: "Freesentation-Regular", Helvetica;
+  font-family: "Freesentation-4Regular", Helvetica;
   color: #000000;
 }
 

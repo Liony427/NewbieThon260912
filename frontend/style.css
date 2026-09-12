@@ -57,7 +57,7 @@
 .element .p {
   top: 227px;
   left: calc(50.00% - 106px);
-  font-family: "Freesentation-SemiBold", Helvetica;
+  font-family: "Freesentation-6SemiBold", Helvetica;
   font-weight: 400;
   color: transparent;
   font-size: 17px;
@@ -73,7 +73,7 @@
 }
 
 .element .span {
-  font-family: "Freesentation-Regular", Helvetica;
+  font-family: "Freesentation-4Regular", Helvetica;
   color: #000000;
 }
 
@@ -284,4 +284,24 @@
 /* 회원가입과 비밀번호 찾기 사이 선 */
 .element .line {
   top: 534px;
+}
+
+.element input.rectangle-2,
+.element input.rectangle-3 {
+  padding-left: 48px;
+  font-family: "Freesentation-5Medium", Helvetica;
+  font-size: 17px;
+  font-weight: 500;
+  color: #000000;
+  outline: none;
+}
+
+.element input.rectangle-2::placeholder,
+.element input.rectangle-3::placeholder {
+  color: #00000073;
+}
+
+.element button.rectangle-4 {
+  cursor: pointer;
+  padding: 0;
 }
