@@ -12,7 +12,7 @@
     <script src="return_flow.js" defer></script>
   </head>
 
-  <body>
+  <body data-page="confirm">
     <div class="app">
       <header>
         <a class="brand" href="main.html" aria-label="바톤터치 홈">
@@ -99,7 +99,7 @@
                 반경
               </dt>
 
-              <dd data-value="distance"></dd>
+              <dd data-value="radius"></dd>
             </div>
 
             <div>
@@ -130,13 +130,13 @@
               취소
             </a>
 
-            <a
-              class="primary"
-              id="confirm-link"
-              href="return_route.html"
-            >
-              확인
-            </a>
+            <button
+  class="primary"
+  id="confirm-link"
+  type="button"
+>
+  확인
+</button>
           </div>
         </section>
       </main>

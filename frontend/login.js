@@ -8,7 +8,6 @@ async function login() {
   const email = emailInput.value.trim();
   const password = passwordInput.value;
 
-  // 입력값 확인
   if (!email) {
     alert("이메일을 입력해주세요.");
     emailInput.focus();
@@ -35,10 +34,11 @@ async function login() {
       }),
     });
 
-    // 로그인 실패
     if (!response.ok) {
       if (response.status === 401) {
         alert("이메일 또는 비밀번호가 올바르지 않습니다.");
+      } else if (response.status === 422) {
+        alert("입력한 이메일 또는 비밀번호를 확인해주세요.");
       } else {
         alert(`로그인에 실패했습니다. (${response.status})`);
       }
@@ -46,24 +46,21 @@ async function login() {
       return;
     }
 
-    // 로그인 성공
-    const user = await response.json();
+    const data = await response.json();
+
+    // 백엔드 응답의 user 객체
+    const user = data.user;
 
     console.log("로그인 성공:", user);
 
-    // 로그인한 사용자 정보 저장
-    localStorage.setItem("userId", user.id);
+    localStorage.setItem("userId", String(user.id));
     localStorage.setItem("userName", user.name);
     localStorage.setItem("userEmail", user.email);
 
     alert(`${user.name}님, 로그인되었습니다!`);
 
-    /*
-      다음 페이지가 정해지면 여기에 넣으면 됨.
-
-      예:
-      window.location.href = "select.html";
-    */
+    // 메인 화면으로 이동
+    window.location.href = "main.html";
 
   } catch (error) {
     console.error("로그인 요청 오류:", error);
@@ -74,10 +71,8 @@ async function login() {
   }
 }
 
-// 로그인 버튼 클릭
 loginButton.addEventListener("click", login);
 
-// 비밀번호 입력창에서 Enter
 passwordInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     login();

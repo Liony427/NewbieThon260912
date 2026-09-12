@@ -542,3 +542,88 @@ h1 {
     transition: background-color 0.15s;
   }
 }
+
+/* =========================
+   메인 화면
+   ========================= */
+
+.home {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 30px;
+  background: var(--paper);
+}
+
+
+/* 로고 + 문구 영역 */
+.home-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* 메인 로고 */
+.home-logo {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* 설명 문구 */
+.home-description {
+  margin-top: 24px;
+
+  font-size: 18px;
+  line-height: 1.4;
+
+  text-align: center;
+
+  font-weight: 400;
+}
+
+
+.home-description strong {
+  font-weight: 700;
+  color: var(--green);
+}
+
+
+/* 예약 / 반납 버튼 영역 */
+.home-actions {
+  width: 100%;
+
+  display: grid;
+  gap: 12px;
+
+  margin-top: 60px;
+}
+
+
+/* 메인 버튼 */
+.home-button {
+  width: 100%;
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--button);
+  color: white;
+
+  border-radius: 15px;
+
+  font-size: 21px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+
+.home-button:hover {
+  background: #069f6e;
+}

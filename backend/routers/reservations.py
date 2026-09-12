@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
+import math
+
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
@@ -25,6 +27,41 @@ def calculate_price(radius: int) -> int:
         return 200
 
 
+def calculate_distance(
+    lat1: float,
+    lon1: float,
+    lat2: float,
+    lon2: float
+) -> float:
+    """
+    두 위도/경도 사이의 거리를 미터 단위로 계산
+    Haversine 공식 사용
+    """
+
+    earth_radius = 6371000
+
+    lat1_rad = math.radians(lat1)
+    lat2_rad = math.radians(lat2)
+
+    delta_lat = math.radians(lat2 - lat1)
+    delta_lon = math.radians(lon2 - lon1)
+
+    a = (
+        math.sin(delta_lat / 2) ** 2
+        +
+        math.cos(lat1_rad)
+        * math.cos(lat2_rad)
+        * math.sin(delta_lon / 2) ** 2
+    )
+
+    c = 2 * math.atan2(
+        math.sqrt(a),
+        math.sqrt(1 - a)
+    )
+
+    return earth_radius * c
+
+
 @router.post(
     "/reservations/price",
     response_model=ReservationPriceResponse
@@ -32,7 +69,9 @@ def calculate_price(radius: int) -> int:
 def get_reservation_price(
     price_data: ReservationPriceRequest
 ):
-    price = calculate_price(price_data.radius)
+    price = calculate_price(
+        price_data.radius
+    )
 
     return {
         "price": price
@@ -47,7 +86,9 @@ def create_reservation(
     reservation_data: ReservationCreate,
     db: Session = Depends(get_db)
 ):
-    price = calculate_price(reservation_data.radius)
+    price = calculate_price(
+        reservation_data.radius
+    )
 
     new_reservation = Reservation(
         user_id=reservation_data.user_id,
@@ -68,6 +109,62 @@ def create_reservation(
     return new_reservation
 
 
+# 주의:
+# /reservations/{reservation_id}보다 위에 있어야 함
+@router.get(
+    "/reservations/nearby"
+)
+def get_nearby_reservations(
+    latitude: float,
+    longitude: float,
+    max_distance: float = Query(
+        default=2000,
+        gt=0
+    ),
+    db: Session = Depends(get_db)
+):
+    waiting_reservations = (
+        db.query(Reservation)
+        .filter(
+            Reservation.status == "WAITING"
+        )
+        .all()
+    )
+
+    nearby = []
+
+    for reservation in waiting_reservations:
+
+        distance = calculate_distance(
+            latitude,
+            longitude,
+            reservation.latitude,
+            reservation.longitude
+        )
+
+        if distance <= max_distance:
+
+            nearby.append({
+                "id": reservation.id,
+                "user_id": reservation.user_id,
+                "address": reservation.address,
+                "latitude": reservation.latitude,
+                "longitude": reservation.longitude,
+                "radius": reservation.radius,
+                "start_time": reservation.start_time,
+                "end_time": reservation.end_time,
+                "price": reservation.price,
+                "status": reservation.status,
+                "distance": round(distance, 1)
+            })
+
+    nearby.sort(
+        key=lambda item: item["distance"]
+    )
+
+    return nearby
+
+
 @router.get(
     "/reservations/{reservation_id}",
     response_model=ReservationResponse
@@ -78,7 +175,10 @@ def get_reservation(
 ):
     reservation = (
         db.query(Reservation)
-        .filter(Reservation.id == reservation_id)
+        .filter(
+            Reservation.id
+            == reservation_id
+        )
         .first()
     )
 

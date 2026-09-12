@@ -686,3 +686,278 @@ dialog p {
     min-width: 170px;
   }
 }
+
+
+/* =========================================
+   예약 위치 선택 화면
+   ========================================= */
+
+.reservation-confirm-page {
+  background: var(--paper);
+}
+
+
+/* 지도 */
+
+.reservation-map {
+  width: 100%;
+  height: 463px;
+  flex-shrink: 0;
+
+  background: #d9d9d9;
+}
+
+
+/* 하단 예약 설정 */
+
+.reservation-sheet {
+  position: relative;
+
+  background: var(--paper);
+
+  padding:
+    12px
+    30px
+    max(14px, env(safe-area-inset-bottom));
+}
+
+
+.reservation-sheet .handle {
+  margin-bottom: 8px;
+}
+
+
+.reservation-sheet h2 {
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+
+.reservation-guide {
+  margin-top: 2px;
+  margin-bottom: 14px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  color: var(--muted);
+}
+
+
+/* 설정 한 줄 */
+
+.reservation-option-row {
+  min-height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 8px 14px;
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 10px;
+
+  margin-bottom: 10px;
+}
+
+
+.option-label {
+  flex-shrink: 0;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  color: var(--muted);
+}
+
+
+.option-value {
+  min-width: 0;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #333;
+
+  text-align: right;
+}
+
+
+.option-value.address {
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+
+/* 100 / 300 / 500 */
+
+.option-buttons {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+.option-button {
+  width: 56px;
+  height: 27px;
+
+  border-radius: 7px;
+
+  border:
+    1px solid
+    rgba(0, 0, 0, 0.2);
+
+  background: #f6f8f9;
+
+  color: rgba(0, 0, 0, 0.45);
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+
+.option-button.selected {
+  background: var(--green);
+
+  color: #ffffff;
+
+  border-color: var(--green);
+}
+
+
+/* 다음 버튼 */
+
+.reservation-next-button {
+  width: 100%;
+  min-height: 49px;
+
+  margin-top: 12px;
+
+  border: 0;
+  border-radius: 15px;
+
+  background: var(--button);
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.reservation-next-button:hover {
+  background: #069f6e;
+}
+
+
+/* 작은 휴대폰 */
+
+@media (max-width: 370px) {
+
+  .reservation-map {
+    height: 420px;
+  }
+
+
+  .reservation-sheet {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+
+  .option-buttons {
+    gap: 5px;
+  }
+
+
+  .option-button {
+    width: 52px;
+  }
+
+}
+
+
+/* =========================
+   예약 페이지 상단 헤더
+   ========================= */
+
+.reservation-confirm-page header {
+  width: 100%;
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 20px;
+  gap: 12px;
+
+  flex-shrink: 0;
+
+  background: var(--paper);
+}
+
+
+/* 로고 영역 */
+.reservation-confirm-page .brand {
+  width: 58px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+
+/* 로고 이미지 */
+.reservation-confirm-page .brand img {
+  width: 70px;
+  height: 70px;
+
+  object-fit: contain;
+}
+
+
+/* | 구분선 */
+.reservation-confirm-page .divider {
+  font-size: 20px;
+  font-weight: 400;
+
+  margin-left: -1px;
+}
+
+
+/* 예약하기 글자 */
+.reservation-confirm-page h1 {
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+}

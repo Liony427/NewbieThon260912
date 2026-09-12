@@ -1,99 +1,201 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    >
-    <title>반납 경로 | 바톤터치</title>
 
-    <link rel="stylesheet" href="return_flow.css">
-    <script src="return_flow.js" defer></script>
-  </head>
+<head>
+  <meta charset="utf-8">
 
-  <body>
-    <div class="app">
-      <header>
-        <a class="brand" href="main.html" aria-label="바톤터치 홈">
-          <img
-            src="img/logo.png"
-            alt="바톤터치"
-            width="70"
-            height="70"
-          >
-        </a>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
 
-        <span class="divider" aria-hidden="true">|</span>
-        <h1>반납 경로</h1>
-      </header>
+  <title>반납 경로 | 바톤터치</title>
 
-      <main class="screen route-screen">
+  <link
+    rel="stylesheet"
+    href="return_flow.css"
+  >
+
+  <!-- 카카오 지도 SDK -->
+  <script
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af218617e0c33cd4ec2576f87ba3288f&libraries=services"
+  ></script>
+
+  <script
+    src="return_flow.js"
+    defer
+  ></script>
+</head>
+
+
+<body data-page="route">
+
+  <div class="app">
+
+    <header>
+
+      <a
+        class="brand"
+        href="main.html"
+        aria-label="바톤터치 홈"
+      >
+        <img
+          src="img/logo.png"
+          alt="바톤터치"
+          width="70"
+          height="70"
+        >
+      </a>
+
+      <span
+        class="divider"
+        aria-hidden="true"
+      >
+        |
+      </span>
+
+      <h1>
+        반납 경로
+      </h1>
+
+    </header>
+
+
+    <main class="screen route-screen">
+
+      <!-- 실제 카카오 지도 -->
+      <div
+        class="map"
+        id="route-map"
+        aria-label="반납 경로 지도 표시 영역"
+      ></div>
+
+
+      <section
+        class="sheet route-sheet"
+        aria-label="반납 경로 안내"
+      >
+
         <div
-          class="map"
-          role="img"
-          aria-label="반납 경로 지도 표시 영역"
+          class="handle"
+          aria-hidden="true"
         ></div>
 
-        <section
-          class="sheet route-sheet"
-          aria-label="반납 경로 안내"
-        >
-          <div class="handle" aria-hidden="true"></div>
 
-          <div class="route-stats">
-            <div>
-              <span class="badge">
-                <svg
-                  class="icon"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle
-                    cx="16"
-                    cy="16"
-                    r="13"
-                    stroke-dasharray="6 4"
-                  />
-                </svg>
-              </span>
+        <div class="route-stats">
 
-              <p>
-                반경까지
-                <strong>350m</strong>
-              </p>
-            </div>
+          <!-- 반납 가능 영역까지 남은 거리 -->
+          <div>
 
-            <div>
-              <span class="badge">
-                <svg
-                  class="icon"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="16" cy="16" r="13" />
-                  <path d="M16 7v10l6 6" />
-                </svg>
-              </span>
+            <span class="badge">
 
-              <p>
-                예상 시간
-                <strong>1분</strong>
-              </p>
-            </div>
+              <svg
+                class="icon"
+                viewBox="0 0 32 32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="13"
+                  stroke-dasharray="6 4"
+                />
+              </svg>
+
+            </span>
+
+
+            <p>
+
+              반경까지
+
+              <strong
+                id="distance-to-boundary"
+              >
+                확인 중...
+              </strong>
+
+            </p>
+
           </div>
-        </section>
-      </main>
-    </div>
-  </body>
+
+
+          <!-- 예상 이동 시간 -->
+          <div>
+
+            <span class="badge">
+
+              <svg
+                class="icon"
+                viewBox="0 0 32 32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="13"
+                />
+
+                <path
+                  d="M16 7v10l6 6"
+                />
+              </svg>
+
+            </span>
+
+
+            <p>
+
+              예상 시간
+
+              <strong
+                id="route-time"
+              >
+                확인 중...
+              </strong>
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- 현재 상태 안내 -->
+        <p
+          id="location-status"
+          class="subtitle"
+        >
+          현재 위치를 확인하고 있어요.
+        </p>
+
+
+        <!-- 반납 버튼 -->
+        <button
+          class="primary"
+          id="return-button"
+          type="button"
+          disabled
+        >
+          반납 구역에 도착하면 활성화됩니다
+        </button>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</body>
+
 </html>
