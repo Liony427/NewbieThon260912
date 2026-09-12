@@ -1,0 +1,48 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  min-height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-Regular", "weight": "400", "style": "normal", "allowsCrossOrigin": false}] */
+
+@font-face {
+  font-family: "Freesentation-Regular";
+  src: local("Freesentation-Regular");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-Bold", "weight": "700", "style": "normal", "allowsCrossOrigin": false}] */
+
+@font-face {
+  font-family: "Freesentation-Bold";
+  src: local("Freesentation-Bold");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-6SemiBold", "weight": "600", "style": "normal", "allowsCrossOrigin": false}] */
+
+@font-face {
+  font-family: "Freesentation-6SemiBold";
+  src: local("Freesentation-6SemiBold");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-7Bold", "weight": "700", "style": "normal", "allowsCrossOrigin": false}] */
+
+@font-face {
+  font-family: "Freesentation-7Bold";
+  src: local("Freesentation-7Bold");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Freesentation-5Medium", "weight": "500", "style": "normal", "allowsCrossOrigin": false}] */
+
+@font-face {
+  font-family: "Freesentation-5Medium";
+  src: local("Freesentation-5Medium");
+}

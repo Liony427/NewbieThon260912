@@ -1,0 +1,312 @@
+.element {
+  position: relative;
+  width: 402px;
+  height: 874px;
+  background-color: var(--variable-collection);
+}
+
+.element .group {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 70px;
+  height: 70px;
+  background-image: url(./img/logo-2.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.element .div {
+  position: absolute;
+  top: 43px;
+  left: 89px;
+  font-family: "Freesentation-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.element .text-wrapper {
+  font-family: "Freesentation-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.element .span {
+  font-family: "Freesentation-Bold", Helvetica;
+  font-weight: 700;
+}
+
+.element .rectangle {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 402px;
+  height: 784px;
+  background-color: #d9d9d9;
+}
+
+.element .rectangle-2 {
+  position: absolute;
+  top: 553px;
+  left: 0;
+  width: 402px;
+  height: 321px;
+  background-color: var(--variable-collection);
+}
+
+.element .rectangle-3 {
+  position: absolute;
+  top: 637px;
+  left: 28px;
+  width: 344px;
+  height: 49px;
+  background-color: #fdfefe;
+  border-radius: 5px;
+  border: 1.3px solid;
+  border-color: #e9eaef;
+}
+
+.element .frame {
+  display: flex;
+  width: 342px;
+  height: 49px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 127px 13px;
+  position: absolute;
+  top: 811px;
+  left: calc(50.00% - 171px);
+  background-color: #08b980;
+  border-radius: 15px;
+  border: 0.5px solid;
+  border-color: #edeff3;
+}
+
+.element .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -0.5px;
+  font-family: "Freesentation-6SemiBold", Helvetica;
+  font-weight: 600;
+  color: #fcfdfc;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.element .text-wrapper-3 {
+  position: absolute;
+  top: 577px;
+  left: 30px;
+  font-family: "Freesentation-7Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 23px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 27.6px;
+  white-space: nowrap;
+}
+
+.element .p {
+  position: absolute;
+  top: 605px;
+  left: 30px;
+  font-family: "Freesentation-5Medium", Helvetica;
+  font-weight: 500;
+  color: #00000080;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.element .line {
+  position: absolute;
+  top: 566px;
+  left: calc(50.00% - 23px);
+  width: 45px;
+  height: 3px;
+}
+
+.element .group-2 {
+  position: absolute;
+  top: 644px;
+  left: 40px;
+  width: 320px;
+  height: 36px;
+  display: flex;
+}
+
+.element .boxicons-location-wrapper {
+  margin-top: 3px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  border-radius: 15px;
+  background: linear-gradient(
+    90deg,
+    rgba(172, 237, 213, 0.5) 0%,
+    rgba(119, 227, 187, 0.5) 100%
+  );
+}
+
+.element .boxicons-location {
+  margin-top: 6px;
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  display: flex;
+  aspect-ratio: 1;
+}
+
+.element .vector {
+  flex: 1;
+  width: 12px;
+}
+
+.element .frame-2 {
+  display: flex;
+  width: 91px;
+  height: 36px;
+  position: relative;
+  margin-left: 15px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.element .text-wrapper-4 {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1px;
+  font-family: "Freesentation-7Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 20.4px;
+}
+
+.element .element-m {
+  position: relative;
+  align-self: stretch;
+  font-family: "Freesentation-5Medium", Helvetica;
+  font-weight: 500;
+  color: #00000080;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 14.4px;
+}
+
+.element .text-wrapper-5 {
+  margin-top: 8px;
+  width: 56px;
+  height: 20px;
+  margin-left: 109px;
+  font-family: "Freesentation-7Bold", Helvetica;
+  font-weight: 700;
+  color: var(--variable-collection);
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 20.4px;
+  white-space: nowrap;
+}
+
+.element .img {
+  margin-top: 11.5px;
+  width: 7.9px;
+  height: 13.44px;
+  margin-left: 10.5px;
+}
+
+.element .rectangle-4 {
+  position: absolute;
+  top: 692px;
+  left: 28px;
+  width: 344px;
+  height: 49px;
+  background-color: #fdfefe;
+  border-radius: 5px;
+  border: 1.3px solid;
+  border-color: #e9eaef;
+}
+
+.element .group-3 {
+  position: absolute;
+  top: 699px;
+  left: 40px;
+  width: 320px;
+  height: 36px;
+  display: flex;
+}
+
+.element .rectangle-5 {
+  position: absolute;
+  top: 747px;
+  left: 28px;
+  width: 344px;
+  height: 49px;
+  background-color: #fdfefe;
+  border-radius: 5px;
+  border: 1.3px solid;
+  border-color: #e9eaef;
+}
+
+.element .group-4 {
+  position: absolute;
+  top: 754px;
+  left: 40px;
+  width: 320px;
+  height: 36px;
+  display: flex;
+}
+
+.element .frame-3 {
+  display: flex;
+  width: 108px;
+  height: 36px;
+  position: relative;
+  margin-left: 15px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.element .element-km {
+  position: relative;
+  width: 116px;
+  margin-right: -8px;
+  font-family: "Freesentation-5Medium", Helvetica;
+  font-weight: 500;
+  color: #00000080;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 14.4px;
+}
+
+.element .text-wrapper-6 {
+  margin-top: 8px;
+  width: 56px;
+  height: 20px;
+  margin-left: 92px;
+  font-family: "Freesentation-7Bold", Helvetica;
+  font-weight: 700;
+  color: var(--variable-collection);
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 20.4px;
+  white-space: nowrap;
+}
