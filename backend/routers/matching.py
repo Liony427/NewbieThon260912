@@ -1,6 +1,6 @@
 from math import radians, sin, cos, sqrt, atan2
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 
@@ -8,6 +8,7 @@ from backend.database import get_db
 from backend.models import Reservation, Match
 from backend.schemas import (
     ReservationResponse,
+    NearbyReservationResponse,
     MatchCreate,
     MatchResponse,
     LocationCheckRequest,
@@ -65,6 +66,59 @@ def get_available_reservations(
     )
 
     return reservations
+
+
+@router.get(
+    "/reservations/nearby",
+    response_model=list[NearbyReservationResponse]
+)
+def get_nearby_reservations(
+    latitude: float,
+    longitude: float,
+    max_distance: float = Query(
+        default=2000,
+        gt=0
+    ),
+    db: Session = Depends(get_db)
+):
+    reservations = (
+        db.query(Reservation)
+        .filter(Reservation.status == "WAITING")
+        .all()
+    )
+
+    nearby_reservations = []
+
+    for reservation in reservations:
+        distance = calculate_distance(
+            latitude,
+            longitude,
+            reservation.latitude,
+            reservation.longitude
+        )
+
+        if distance <= max_distance:
+            nearby_reservations.append(
+                {
+                    "id": reservation.id,
+                    "user_id": reservation.user_id,
+                    "address": reservation.address,
+                    "latitude": reservation.latitude,
+                    "longitude": reservation.longitude,
+                    "radius": reservation.radius,
+                    "start_time": reservation.start_time,
+                    "end_time": reservation.end_time,
+                    "price": reservation.price,
+                    "status": reservation.status,
+                    "distance": round(distance, 1)
+                }
+            )
+
+    nearby_reservations.sort(
+        key=lambda reservation: reservation["distance"]
+    )
+
+    return nearby_reservations
 
 
 @router.post(
