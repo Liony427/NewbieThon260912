@@ -2,76 +2,61 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8">
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     >
-    <title>반납 경로 | 바톤터치</title>
+
+    <title>반납 완료 | 바톤터치</title>
 
     <link rel="stylesheet" href="return_flow.css">
-    <script src="return_flow.js" defer></script>
   </head>
 
-  <body>
+  <body data-page="complete">
     <div class="app">
-      <header>
-        <a class="brand" href="main.html" aria-label="바톤터치 홈">
-          <img
-            src="img/logo.png"
-            alt="바톤터치"
-            width="70"
-            height="70"
-          >
+      <header class="header">
+        <a
+          class="brand"
+          href="main.html"
+          aria-label="바톤터치 홈"
+        >
+          <img src="img/logo.png" alt="바톤터치">
         </a>
 
-        <span class="divider" aria-hidden="true">|</span>
+        <span class="header-divider" aria-hidden="true">|</span>
+
         <h1>반납 경로</h1>
       </header>
 
-      <main class="screen complete-screen">
+      <main class="screen">
         <div
           class="map"
           role="img"
-          aria-label="반납 위치 지도 표시 영역"
+          aria-label="반납 위치 지도 표시 예정 영역"
         >
-          <svg
-            class="icon map-pin"
-            viewBox="0 0 32 32"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
+          <img
+            class="map-pin"
+            src="img/location pick.png"
+            alt=""
           >
-            <path
-              d="M16 2C9 2 4 7 4 14c0 9 12 17 12 17s12-8 12-17C28 7 23 2 16 2Z"
-              fill="currentColor"
-              stroke="white"
-            />
-            <circle
-              cx="16"
-              cy="13"
-              r="5"
-              fill="#d9d9d9"
-              stroke="white"
-            />
-          </svg>
         </div>
 
         <section class="sheet completion">
-          <span class="badge large">
+          <span class="badge badge-large">
             <svg
-              class="icon"
+              class="check-icon"
               viewBox="0 0 32 32"
               fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
               aria-hidden="true"
             >
-              <path d="m7 16 6 6L25 8" stroke-width="5" />
+              <path
+                d="M7 16L13 22L25 8"
+                stroke="currentColor"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </span>
 
