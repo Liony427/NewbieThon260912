@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import BaseModel, EmailStr, Field
 from pwdlib import PasswordHash
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
@@ -15,6 +16,16 @@ router = APIRouter(
 )
 
 password_hasher = PasswordHash.recommended()
+
+
+class LoginRequest(BaseModel):
+    email: EmailStr = Field(max_length=254)
+    password: str = Field(min_length=1, max_length=128)
+
+
+class LoginResponse(BaseModel):
+    message: str
+    user: SignupResponse
 
 
 @router.post(
@@ -64,3 +75,45 @@ def signup(
     db.refresh(new_user)
 
     return new_user
+
+
+@router.post(
+    "/login",
+    response_model=LoginResponse,
+    status_code=status.HTTP_200_OK
+)
+def login(
+    body: LoginRequest,
+    db: Session = Depends(get_db)
+):
+    email = str(body.email).lower()
+
+    user = db.scalar(
+        select(User).where(User.email == email)
+    )
+
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="이메일 또는 비밀번호를 확인하고 다시 시도해주세요."
+        )
+
+    password_matches = password_hasher.verify(
+        body.password,
+        user.password_hash
+    )
+
+    if not password_matches:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="이메일 또는 비밀번호를 확인하고 다시 시도해주세요."
+        )
+
+    return {
+        "message": "로그인 성공",
+        "user": {
+            "id": user.id,
+            "name": user.name,
+            "email": user.email
+        }
+    }
