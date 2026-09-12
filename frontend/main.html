@@ -12,6 +12,62 @@
 
     <link rel="stylesheet" href="return_flow.css">
     <script src="main.js" defer></script>
+
+    <style>
+      @font-face {
+        font-family: "LogoutFreesentation5";
+        src: url("./fonts/Freesentation-5Medium.ttf") format("truetype");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      .home #logoutButton {
+        appearance: none;
+        -webkit-appearance: none;
+        box-sizing: border-box;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        flex: 0 0 auto;
+
+        width: 118px;
+        max-width: 100%;
+        min-height: 50px;
+        margin: 54px auto 0;
+        padding: 10px 16px;
+
+        border: 1px solid #c5ccca;
+        border-radius: 16px;
+        background: #fcfdfc;
+        box-shadow: none;
+        color: #000;
+
+        font-family: "LogoutFreesentation5", sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: normal;
+        text-align: center;
+
+        cursor: pointer;
+      }
+
+      .home #logoutButton:hover {
+        background: #f0f7f4;
+      }
+
+      .home #logoutButton:active {
+        background: #e5f0eb;
+      }
+
+      .home #logoutButton:focus-visible {
+        outline: 2px solid #087b58;
+        outline-offset: 4px;
+      }
+    </style>
   </head>
 
   <body>
