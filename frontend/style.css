@@ -305,3 +305,92 @@
   cursor: pointer;
   padding: 0;
 }
+
+/* 모바일 반응형 보정 */
+.element {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  min-height: 100vh;
+  min-height: max(100svh, 710px);
+  margin-inline: auto;
+}
+
+/* 로그인 카드 배경 */
+.element .rectangle {
+  left: 6%;
+  width: 88%;
+}
+
+/* 기존 세로 좌표를 유지하는 기준 영역 */
+.element .group {
+  top: 93px;
+  left: 0;
+  width: 100%;
+  height: 557px;
+}
+
+.element .div {
+  left: 0;
+  width: 100%;
+}
+
+/* 로고 중앙 정렬 */
+.element .logo {
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(281px, 88%);
+  height: auto;
+}
+
+/* 로고 아래 문구 */
+.element .p {
+  left: 6%;
+  width: 88%;
+  margin: 0;
+  white-space: normal;
+  text-align: center;
+  font-size: clamp(15px, 4.2vw, 17px);
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+/* 이메일·비밀번호·로그인 버튼 */
+.element .rectangle-2,
+.element .rectangle-3,
+.element .rectangle-4 {
+  left: 12.5%;
+  width: 75%;
+  min-width: 0;
+}
+
+/* 입력창 아이콘 */
+.element .carbon-email,
+.element .at-icons-lock {
+  left: calc(12.5% + 13px);
+}
+
+/* 로그인 버튼 문구 */
+.element .text-wrapper-5 {
+  left: 12.5%;
+  width: 75%;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* 하단 링크 */
+.element .text-wrapper-3 {
+  left: 12.5%;
+  width: calc(37.5% - 8px);
+  text-align: center;
+}
+
+.element .text-wrapper-4 {
+  left: calc(50% + 8px);
+  width: calc(37.5% - 8px);
+  text-align: center;
+}
+
+.element .line {
+  left: 50%;
+}
