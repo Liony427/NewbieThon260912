@@ -1,307 +1,311 @@
+/* =========================
+   전체 페이지
+========================= */
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+
+  background-color: #f3f3f3;
+
+  font-family: "Freesentation-4Regular", sans-serif;
+}
+
+
+/* =========================
+   모바일 화면
+========================= */
+
 .element {
-  position: relative;
-  width: 402px;
-  height: 874px;
+  width: 100%;
+  max-width: 402px;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  padding:
+    max(40px, env(safe-area-inset-top))
+    24px
+    max(30px, env(safe-area-inset-bottom));
+
   background:
     linear-gradient(
       180deg,
       rgba(250, 250, 250, 0.1) 31%,
-      rgba(24, 186, 134, 0.01) 100%
+      rgba(24, 186, 134, 0.03) 100%
     ),
-    linear-gradient(
-      0deg,
-      rgba(252, 253, 252, 1) 0%,
-      rgba(252, 253, 252, 1) 100%
-    );
-  background-color: var(--mn-7-fv-r);
+    #fcfdfc;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.element .rectangle {
-  position: absolute;
-  top: 395px;
-  left: 24px;
-  width: 353px;
-  height: 276px;
-  background-color: #fffefd;
-  border-radius: 23px;
-  border: 1px solid;
-  border-color: #000000;
-}
 
-.element .group {
-  position: absolute;
-  width: 91.45%;
-  height: 63.73%;
-  top: 10.64%;
-  left: 4.23%;
-}
+/* =========================
+   로고
+========================= */
 
-.element .div {
-  position: absolute;
-  top: 0;
-  left: 46px;
-  width: 287px;
-  height: 557px;
-}
-
-.element .logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 281px;
-  height: 281px;
-  aspect-ratio: 1;
-  object-fit: cover;
-}
-
-.element .p {
-  top: 227px;
-  left: calc(50.00% - 106px);
-  font-family: "Freesentation-6SemiBold", Helvetica;
-  font-weight: 400;
-  color: transparent;
-  font-size: 17px;
-  letter-spacing: 0;
-  line-height: 20.4px;
-  position: absolute;
-  white-space: nowrap;
-}
-
-.element .text-wrapper {
-  font-weight: 600;
-  color: #000000;
-}
-
-.element .span {
-  font-family: "Freesentation-4Regular", Helvetica;
-  color: #000000;
-}
-
-.element .text-wrapper-2 {
-  font-weight: 600;
-  color: #18b985;
-}
-
-.element .text-wrapper-3 {
-  top: 537px;
-  left: calc(50.00% - 114px);
-  font-family: "Freesentation-6SemiBold", Helvetica;
-  font-weight: 600;
-  color: #0a0a0a;
-  font-size: 17px;
-  letter-spacing: 0;
-  line-height: 20.4px;
-  position: absolute;
-  white-space: nowrap;
-}
-
-.element .text-wrapper-4 {
-  top: 537px;
-  left: calc(50.00% + 40px);
-  font-family: "Freesentation-6SemiBold", Helvetica;
-  font-weight: 600;
-  color: #0a0a0a;
-  font-size: 17px;
-  letter-spacing: 0;
-  line-height: 20.4px;
-  position: absolute;
-  white-space: nowrap;
-}
-
-.element .vector {
-  position: absolute;
-  width: 17.30%;
-  height: 88.15%;
-  top: 11.85%;
-  left: 82.70%;
-}
-
-.element .img {
-  position: absolute;
+.logo-section {
   width: 100%;
-  height: 75.76%;
-  top: 24.24%;
-  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 25px;
 }
 
-.element .rectangle-2 {
-  position: absolute;
-  top: 429px;
-  left: 50px;
-  width: 302px;
-  height: 49px;
-  background-color: #f6f8f9;
-  border-radius: 10px;
-  border: 0.5px solid;
-  border-color: #edeff3;
+.logo {
+  width: min(70vw, 281px);
+  height: auto;
+
+  object-fit: contain;
+
+  display: block;
 }
 
-.element .rectangle-3 {
-  position: absolute;
-  top: 493px;
-  left: 50px;
-  width: 302px;
-  height: 49px;
-  background-color: #f6f8f9;
-  border-radius: 10px;
-  border: 0.5px solid;
-  border-color: #edeff3;
-}
+.tagline {
+  margin-top: -52px;
 
-.element .rectangle-4 {
-  position: absolute;
-  top: 557px;
-  left: 50px;
-  width: 302px;
-  height: 49px;
-  background-color: #08b980;
-  border-radius: 15px;
-  border: 0.5px solid;
-  border-color: #edeff3;
-}
+  font-family: "Freesentation-6SemiBold", sans-serif;
 
-.element .line {
-  position: absolute;
-  top: 627px;
-  left: 50.00%;
-  width: 1px;
-  height: 20px;
-  object-fit: cover;
-}
+  font-size: clamp(13px, 4vw, 17px);
 
-.element .text-wrapper-5 {
-  top: 569px;
-  left: calc(50.00% - 24px);
-  font-family: "Freesentation-6SemiBold", Helvetica;
   font-weight: 600;
-  color: #fcfdfc;
-  font-size: 20px;
-  text-align: center;
-  letter-spacing: 1px;
-  line-height: 24px;
-  position: absolute;
+
   white-space: nowrap;
+
+  color: #000;
 }
 
-.element .text-wrapper-6 {
-  top: 508px;
-  left: calc(50.00% - 91px);
-  font-family: "Freesentation-5Medium", Helvetica;
+.tagline .green {
+  color: #18b985;
+
+  margin-left: 4px;
+}
+
+
+/* =========================
+   로그인 박스
+========================= */
+
+.login-card {
+  width: 100%;
+  max-width: 353px;
+
+  margin-top: 105px;
+
+  padding: 32px 25px 17px;
+
+  background: #fffefd;
+
+  border: 1px solid #000;
+
+  border-radius: 23px;
+}
+
+
+/* =========================
+   입력창
+========================= */
+
+.input-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  margin-bottom: 15px;
+}
+
+.login-input {
+  width: 100%;
+  height: 49px;
+
+  padding:
+    0
+    15px
+    0
+    46px;
+
+  border: 0.5px solid #edeff3;
+
+  border-radius: 10px;
+
+  background: #f6f8f9;
+
+  font-family: "Freesentation-5Medium", sans-serif;
+
+  font-size: 16px;
+
   font-weight: 500;
-  color: #00000073;
-  font-size: 17px;
-  letter-spacing: 0.85px;
-  line-height: 20.4px;
-  position: absolute;
-  white-space: nowrap;
-}
 
-.element .text-wrapper-7 {
-  top: 444px;
-  left: calc(50.00% - 91px);
-  font-family: "Freesentation-5Medium", Helvetica;
-  font-weight: 500;
-  color: #00000073;
-  font-size: 17px;
-  letter-spacing: 0.85px;
-  line-height: 20.4px;
-  position: absolute;
-  white-space: nowrap;
-}
+  color: #000;
 
-.element .carbon-email {
-  position: absolute;
-  top: 444px;
-  left: 63px;
-  width: 20px;
-  height: 20px;
-  display: flex;
-}
-
-.element .vector-2 {
-  flex: 1;
-  width: 17.5px;
-}
-
-.element .at-icons-lock {
-  position: absolute;
-  top: 508px;
-  left: 64px;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  aspect-ratio: 1;
-}
-
-.element .vector-3 {
-  flex: 1;
-  width: 15px;
-}
-
-/* 로그인 입력창 위치 수정 */
-.element .rectangle-2 {
-  top: 336px;
-  left: 33px;
-}
-
-.element .rectangle-3 {
-  top: 400px;
-  left: 33px;
-}
-
-.element .rectangle-4 {
-  top: 464px;
-  left: 33px;
-}
-
-/* 이메일 글씨 */
-.element .text-wrapper-7 {
-  top: 351px;
-}
-
-/* 비밀번호 글씨 */
-.element .text-wrapper-6 {
-  top: 415px;
-}
-
-/* 로그인 글씨 */
-.element .text-wrapper-5 {
-  top: 476px;
-}
-
-/* 이메일 아이콘 */
-.element .carbon-email {
-  top: 351px;
-  left: 46px;
-}
-
-/* 비밀번호 아이콘 */
-.element .at-icons-lock {
-  top: 415px;
-  left: 47px;
-}
-
-/* 회원가입과 비밀번호 찾기 사이 선 */
-.element .line {
-  top: 534px;
-}
-
-.element input.rectangle-2,
-.element input.rectangle-3 {
-  padding-left: 48px;
-  font-family: "Freesentation-5Medium", Helvetica;
-  font-size: 17px;
-  font-weight: 500;
-  color: #000000;
   outline: none;
 }
 
-.element input.rectangle-2::placeholder,
-.element input.rectangle-3::placeholder {
-  color: #00000073;
+.login-input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
 }
 
-.element button.rectangle-4 {
+.login-input:focus {
+  border-color: #18ba86;
+
+  background: #ffffff;
+}
+
+
+/* =========================
+   입력창 아이콘
+========================= */
+
+.input-icon {
+  position: absolute;
+
+  left: 14px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 20px;
+  height: 20px;
+
+  object-fit: contain;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+
+/* =========================
+   로그인 버튼
+========================= */
+
+.login-button {
+  width: 100%;
+  height: 49px;
+
+  margin-top: 1px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  background: #08b980;
+
+  color: #fcfdfc;
+
+  font-family: "Freesentation-6SemiBold", sans-serif;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+
   cursor: pointer;
-  padding: 0;
+}
+
+.login-button:active {
+  transform: scale(0.98);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+
+  cursor: default;
+}
+
+
+/* =========================
+   회원가입 / 비밀번호 찾기
+========================= */
+
+.login-links {
+  width: 100%;
+
+  height: 40px;
+
+  margin-top: 8px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 22px;
+}
+
+.link-button {
+  border: none;
+
+  padding: 5px;
+
+  background: transparent;
+
+  font-family: "Freesentation-6SemiBold", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #0a0a0a;
+
+  cursor: pointer;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+
+  background: #000;
+}
+
+
+/* =========================
+   작은 휴대폰
+========================= */
+
+@media (max-width: 360px) {
+
+  .element {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .login-card {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .logo {
+    width: min(76vw, 270px);
+  }
+
+  .login-card {
+    margin-top: 90px;
+  }
+
+}
+
+
+/* =========================
+   PC에서 모바일 화면 표시
+========================= */
+
+@media (min-width: 403px) {
+
+  .element {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  }
+
 }

@@ -1,47 +1,121 @@
-
-    <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="globals.css">
-<link rel="stylesheet" href="styleguide.css">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>자전거 바톤터치</title>
+
+  <link rel="stylesheet" href="globals.css">
+  <link rel="stylesheet" href="styleguide.css">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="element" ><div class="rectangle" ></div>
-<div class="group" ><div class="div" ><img class="logo" src="img/logo.png" />
-<p class="p" ><span class="text-wrapper" >원하는 곳 가까이,</span>
-<span class="span" >&nbsp;</span>
-<span class="text-wrapper-2" >자전거를 이어받다</span></p>
-<div class="text-wrapper-3" >회원가입</div>
-<div class="text-wrapper-4" >비밀번호 찾기</div></div>
 
-<input
-  class="rectangle-2"
-  id="emailInput"
-  type="email"
-  placeholder="이메일"
-/>
+  <main class="element">
 
-<input
-  class="rectangle-3"
-  id="passwordInput"
-  type="password"
-  placeholder="비밀번호"
-/>
+    <!-- 로고 영역 -->
+    <section class="logo-section">
 
-<button
-  class="rectangle-4"
-  id="loginButton"
-  type="button"
-></button>
+      <img
+        class="logo"
+        src="img/logo.png"
+        alt="자전거 바톤터치"
+      >
 
-<img class="line" src="img/line-1.png" />
-<div class="text-wrapper-5" >로그인</div>
+      <p class="tagline">
+        <span>원하는 곳 가까이,</span>
+        <span class="green">자전거를 이어받다</span>
+      </p>
 
-<div class="carbon-email" ><img class="img" src="img/email.png" /></div>
-<div class="at-icons-lock" ><img class="img" src="img/lock.png" /></div></div>
-<script src="login.js"></script>
+    </section>
+
+
+    <!-- 로그인 영역 -->
+    <section class="login-card">
+
+      <!-- 이메일 -->
+      <div class="input-wrapper">
+
+        <img
+          class="input-icon"
+          src="img/email.png"
+          alt=""
+        >
+
+        <input
+          id="emailInput"
+          class="login-input"
+          type="email"
+          placeholder="이메일"
+          autocomplete="email"
+        >
+
+      </div>
+
+
+      <!-- 비밀번호 -->
+      <div class="input-wrapper">
+
+        <img
+          class="input-icon"
+          src="img/lock.png"
+          alt=""
+        >
+
+        <input
+          id="passwordInput"
+          class="login-input"
+          type="password"
+          placeholder="비밀번호"
+          autocomplete="current-password"
+        >
+
+      </div>
+
+
+      <!-- 로그인 버튼 -->
+      <button
+        id="loginButton"
+        class="login-button"
+        type="button"
+      >
+        로그인
+      </button>
+
+
+      <!-- 하단 버튼 -->
+      <div class="login-links">
+
+        <button
+          class="link-button"
+          type="button"
+        >
+          회원가입
+        </button>
+
+        <div class="divider"></div>
+
+        <button
+          class="link-button"
+          type="button"
+        >
+          비밀번호 찾기
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="login.js"></script>
+
 </body>
 </html>

@@ -58,12 +58,7 @@ async function login() {
 
     alert(`${user.name}님, 로그인되었습니다!`);
 
-    /*
-      다음 페이지가 정해지면 여기에 넣으면 됨.
-
-      예:
-      window.location.href = "select.html";
-    */
+    window.location.href = "main.html"; 
 
   } catch (error) {
     console.error("로그인 요청 오류:", error);
