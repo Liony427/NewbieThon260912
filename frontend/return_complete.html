@@ -1,84 +1,138 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8">
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    >
+<head>
+  <meta charset="utf-8">
 
-    <title>반납 완료 | 바톤터치</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
 
-    <link rel="stylesheet" href="return_flow.css">
-  </head>
+  <title>반납 완료 | 바톤터치</title>
 
-  <body data-page="complete">
-    <div class="app">
-      <header class="header">
-        <a
-          class="brand"
-          href="main.html"
-          aria-label="바톤터치 홈"
+  <link
+    rel="stylesheet"
+    href="return_flow.css"
+  >
+
+  <script
+    src="return_flow.js"
+    defer
+  ></script>
+</head>
+
+
+<body data-page="complete">
+
+  <div class="app">
+
+    <header class="header">
+
+      <a
+        class="brand"
+        href="main.html"
+        aria-label="바톤터치 홈"
+      >
+        <img
+          src="img/logo.png"
+          alt="바톤터치"
         >
-          <img src="img/logo.png" alt="바톤터치">
-        </a>
+      </a>
 
-        <span class="header-divider" aria-hidden="true">|</span>
+      <span
+        class="header-divider"
+        aria-hidden="true"
+      >
+        |
+      </span>
 
-        <h1>반납 경로</h1>
-      </header>
+      <h1>
+        반납 완료
+      </h1>
 
-      <main class="screen">
-        <div
-          class="map"
-          role="img"
-          aria-label="반납 위치 지도 표시 예정 영역"
+    </header>
+
+
+    <main class="screen">
+
+      <div
+        class="map"
+        role="img"
+        aria-label="반납 완료 영역"
+      >
+
+        <img
+          class="map-pin"
+          src="img/location pick.png"
+          alt=""
         >
-          <img
-            class="map-pin"
-            src="img/location pick.png"
-            alt=""
+
+      </div>
+
+
+      <section class="sheet completion">
+
+        <span class="badge badge-large">
+
+          <svg
+            class="check-icon"
+            viewBox="0 0 32 32"
+            fill="none"
+            aria-hidden="true"
           >
+            <path
+              d="M7 16L13 22L25 8"
+              stroke="currentColor"
+              stroke-width="5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+        </span>
+
+
+        <h2>
+          반납이 완료되었습니다
+
+          <strong>
+            자전거 락 완료
+          </strong>
+        </h2>
+
+
+        <p class="subtitle">
+          바톤 할인이 적용되었습니다!
+        </p>
+
+
+        <div class="discount">
+
+          <strong>
+            바톤 할인
+          </strong>
+
+          <strong id="discount-amount">
+            확인 중...
+          </strong>
+
         </div>
 
-        <section class="sheet completion">
-          <span class="badge badge-large">
-            <svg
-              class="check-icon"
-              viewBox="0 0 32 32"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M7 16L13 22L25 8"
-                stroke="currentColor"
-                stroke-width="5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
 
-          <h2>
-            반경 안에 들어왔어요
-            <strong>자전거 락 완료</strong>
-          </h2>
+        <a
+          class="primary"
+          href="main.html"
+        >
+          완료
+        </a>
 
-          <p class="subtitle">
-            바톤 할인이 적용되었습니다!
-          </p>
+      </section>
 
-          <div class="discount">
-            <strong>바톤 할인</strong>
-            <strong>2,800원</strong>
-          </div>
+    </main>
 
-          <a class="primary" href="main.html">
-            완료
-          </a>
-        </section>
-      </main>
-    </div>
-  </body>
+  </div>
+
+</body>
+
 </html>

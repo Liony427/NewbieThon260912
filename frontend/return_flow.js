@@ -1,6 +1,10 @@
 "use strict";
 
 
+// ========================================
+// 기본 설정
+// ========================================
+
 const API_BASE_URL =
   "http://127.0.0.1:8000";
 
@@ -10,7 +14,7 @@ const page =
 
 
 // ========================================
-// 거리 표시
+// 공통 함수
 // ========================================
 
 function formatDistance(distance) {
@@ -28,11 +32,6 @@ function formatDistance(distance) {
 }
 
 
-// ========================================
-// 예상 이동 시간
-// MVP: 자전거 약 250m/분 가정
-// ========================================
-
 function estimateMinutes(distance) {
 
   return Math.max(
@@ -43,8 +42,21 @@ function estimateMinutes(distance) {
 }
 
 
+function escapeHtml(value) {
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
 // ========================================
-// 반납 추천 화면
+// 추천 화면
+// return_recommend.html
 // ========================================
 
 if (page === "recommend") {
@@ -54,15 +66,18 @@ if (page === "recommend") {
       "recommendation-list"
     );
 
+
   const statusText =
     document.getElementById(
       "recommend-status"
     );
 
+
   const refreshButton =
     document.getElementById(
       "refresh-recommendations"
     );
+
 
   const mapContainer =
     document.getElementById(
@@ -71,13 +86,17 @@ if (page === "recommend") {
 
 
   let map = null;
+
   let userMarker = null;
+
   let reservationMarkers = [];
+
   let reservationCircles = [];
 
-  // ------------------------------------
-  // 지도 초기화
-  // ------------------------------------
+
+  // ======================================
+  // 지도 생성
+  // ======================================
 
   function createMap(
     latitude,
@@ -105,17 +124,22 @@ if (page === "recommend") {
 
       userMarker =
         new kakao.maps.Marker({
-          position
+          position: position
         });
 
 
-      userMarker.setMap(map);
+      userMarker.setMap(
+        map
+      );
 
     }
 
     else {
 
-      map.setCenter(position);
+      map.setCenter(
+        position
+      );
+
 
       userMarker.setPosition(
         position
@@ -126,113 +150,137 @@ if (page === "recommend") {
   }
 
 
-  // ------------------------------------
-  // 기존 예약 마커 삭제
-  // ------------------------------------
+  // ======================================
+  // 기존 마커 / 원 삭제
+  // ======================================
 
   function clearReservationMarkers() {
 
-  reservationMarkers.forEach(
-    function (marker) {
+    reservationMarkers.forEach(
+      function (marker) {
 
-      marker.setMap(null);
+        marker.setMap(null);
 
-    }
-  );
-
-  reservationMarkers = [];
+      }
+    );
 
 
-  reservationCircles.forEach(
-    function (circle) {
-
-      circle.setMap(null);
-
-    }
-  );
-
-  reservationCircles = [];
-
-}
+    reservationMarkers = [];
 
 
-  // ------------------------------------
-  // 예약 위치 마커 표시
-  // ------------------------------------
+    reservationCircles.forEach(
+      function (circle) {
+
+        circle.setMap(null);
+
+      }
+    );
+
+
+    reservationCircles = [];
+
+  }
+
+
+  // ======================================
+  // 예약 마커 + 바운더리 표시
+  // ======================================
 
   function showReservationMarkers(
-  reservations
-) {
+    reservations
+  ) {
 
-  clearReservationMarkers();
+    clearReservationMarkers();
 
 
-  reservations.forEach(
-    function (reservation) {
+    reservations.forEach(
+      function (reservation) {
 
-      const position =
-        new kakao.maps.LatLng(
-          reservation.latitude,
-          reservation.longitude
+        const position =
+          new kakao.maps.LatLng(
+            reservation.latitude,
+            reservation.longitude
+          );
+
+
+        // 중심 마커
+        const marker =
+          new kakao.maps.Marker({
+            position: position
+          });
+
+
+        marker.setMap(
+          map
         );
 
 
-      // 예약 위치 중심 마커
-      const marker =
-        new kakao.maps.Marker({
-          position
-        });
-
-      marker.setMap(map);
-
-      reservationMarkers.push(
-        marker
-      );
+        reservationMarkers.push(
+          marker
+        );
 
 
-      // 예약자가 지정한 반납 가능 영역
-      const circle =
-        new kakao.maps.Circle({
-          center: position,
+        // 반납 가능 바운더리
+        const circle =
+          new kakao.maps.Circle({
 
-          // DB의 radius 값 그대로 사용
-          radius: reservation.radius,
+            center:
+              position,
 
-          strokeWeight: 2,
-          strokeColor: "#10bb89",
-          strokeOpacity: 0.9,
-          strokeStyle: "solid",
+            radius:
+              reservation.radius,
 
-          fillColor: "#10bb89",
-          fillOpacity: 0.18
-        });
+            strokeWeight:
+              2,
+
+            strokeColor:
+              "#10bb89",
+
+            strokeOpacity:
+              0.9,
+
+            strokeStyle:
+              "solid",
+
+            fillColor:
+              "#10bb89",
+
+            fillOpacity:
+              0.18
+
+          });
 
 
-      circle.setMap(map);
+        circle.setMap(
+          map
+        );
 
 
-      reservationCircles.push(
-        circle
-      );
+        reservationCircles.push(
+          circle
+        );
 
-    }
-  );
+      }
+    );
 
-}
+  }
 
 
-  // ------------------------------------
-  // 추천 카드 생성
-  // ------------------------------------
+  // ======================================
+  // 추천 카드 출력
+  // ======================================
 
   function renderReservations(
     reservations
   ) {
 
-    list.innerHTML = "";
+    list.innerHTML =
+      "";
 
 
-    if (reservations.length === 0) {
+    if (
+      reservations.length === 0
+    ) {
 
       statusText.textContent =
         "현재 주변에 반납 요청이 없어요.";
@@ -261,18 +309,9 @@ if (page === "recommend") {
           );
 
 
-        const link =
-          document.createElement(
-            "a"
-          );
-
-
-        link.className =
-          "recommendation";
-
-
         const query =
           new URLSearchParams({
+
             reservation_id:
               String(
                 reservation.id
@@ -305,7 +344,18 @@ if (page === "recommend") {
               String(
                 reservation.distance
               )
+
           });
+
+
+        const link =
+          document.createElement(
+            "a"
+          );
+
+
+        link.className =
+          "recommendation";
 
 
         link.href =
@@ -313,7 +363,9 @@ if (page === "recommend") {
 
 
         link.innerHTML = `
+
           <span class="badge small">
+
             <svg
               class="icon"
               viewBox="0 0 32 32"
@@ -324,6 +376,7 @@ if (page === "recommend") {
               stroke-linejoin="round"
               aria-hidden="true"
             >
+
               <path
                 d="M16 2C9 2 4 7 4 14c0 9 12 17 12 17s12-8 12-17C28 7 23 2 16 2Z"
                 fill="currentColor"
@@ -337,14 +390,16 @@ if (page === "recommend") {
                 fill="#d9d9d9"
                 stroke="white"
               ></circle>
+
             </svg>
+
           </span>
 
 
           <span class="destination">
 
             <strong>
-              ${reservation.address}
+              ${escapeHtml(reservation.address)}
             </strong>
 
             <span>
@@ -357,17 +412,21 @@ if (page === "recommend") {
 
 
           <strong class="reward">
-            +${reservation.price}원
+            +${Number(reservation.price).toLocaleString()}원
           </strong>
+
 
           <span
             class="chevron"
             aria-hidden="true"
           ></span>
+
         `;
 
 
-        list.appendChild(link);
+        list.appendChild(
+          link
+        );
 
       }
     );
@@ -375,9 +434,9 @@ if (page === "recommend") {
   }
 
 
-  // ------------------------------------
-  // API 호출
-  // ------------------------------------
+  // ======================================
+  // nearby API
+  // ======================================
 
   async function loadNearbyReservations(
     latitude,
@@ -392,6 +451,7 @@ if (page === "recommend") {
 
       const query =
         new URLSearchParams({
+
           latitude:
             String(latitude),
 
@@ -400,6 +460,7 @@ if (page === "recommend") {
 
           max_distance:
             "2000"
+
         });
 
 
@@ -455,9 +516,9 @@ if (page === "recommend") {
   }
 
 
-  // ------------------------------------
-  // 현재 위치 가져오기
-  // ------------------------------------
+  // ======================================
+  // 현재 GPS
+  // ======================================
 
   function findNearby() {
 
@@ -483,6 +544,7 @@ if (page === "recommend") {
 
         const latitude =
           position.coords.latitude;
+
 
         const longitude =
           position.coords.longitude;
@@ -524,11 +586,14 @@ if (page === "recommend") {
 
 
       {
-        enableHighAccuracy: true,
+        enableHighAccuracy:
+          true,
 
-        timeout: 10000,
+        timeout:
+          10000,
 
-        maximumAge: 30000
+        maximumAge:
+          30000
       }
 
     );
@@ -536,13 +601,18 @@ if (page === "recommend") {
   }
 
 
-  refreshButton.addEventListener(
-    "click",
-    findNearby
-  );
+  if (
+    refreshButton
+  ) {
+
+    refreshButton.addEventListener(
+      "click",
+      findNearby
+    );
+
+  }
 
 
-  // 페이지 진입 즉시 실행
   findNearby();
 
 }
@@ -550,6 +620,7 @@ if (page === "recommend") {
 
 // ========================================
 // 반납 요청 확인 화면
+// return_confirm.html
 // ========================================
 
 if (page === "confirm") {
@@ -565,40 +636,52 @@ if (page === "confirm") {
       "reservation_id"
     );
 
+
   const address =
     params.get(
       "address"
     );
 
+
   const latitude =
     Number(
-      params.get("latitude")
+      params.get(
+        "latitude"
+      )
     );
+
 
   const longitude =
     Number(
-      params.get("longitude")
+      params.get(
+        "longitude"
+      )
     );
+
 
   const radius =
     Number(
-      params.get("radius")
+      params.get(
+        "radius"
+      )
     );
+
 
   const price =
     Number(
-      params.get("price")
+      params.get(
+        "price"
+      )
     );
+
 
   const distance =
     Number(
-      params.get("distance")
+      params.get(
+        "distance"
+      )
     );
 
-
-  // ----------------------------
-  // 필요한 예약 정보가 없으면
-  // ----------------------------
 
   if (!reservationId) {
 
@@ -606,263 +689,299 @@ if (page === "confirm") {
       "선택한 반납 요청 정보를 찾을 수 없습니다."
     );
 
+
     window.location.href =
       "return_recommend.html";
 
   }
 
+  else {
 
-  // ----------------------------
-  // 추가 할인
-  // ----------------------------
+    // ====================================
+    // 할인 금액
+    // ====================================
 
-  const rewardElement =
-    document.querySelector(
-      '[data-value="reward"]'
-    );
-
-  if (rewardElement) {
-
-    rewardElement.textContent =
-      `+${price.toLocaleString()}원`;
-
-  }
-
-
-  // ----------------------------
-  // 반납 허용 반경
-  // ----------------------------
-
-  const radiusElement =
-    document.querySelector(
-      '[data-value="radius"]'
-    );
-
-  if (radiusElement) {
-
-    radiusElement.textContent =
-      `${radius}m`;
-
-  }
-
-
-  // ----------------------------
-  // 예상 추가 시간
-  // ----------------------------
-
-  const timeElement =
-    document.querySelector(
-      '[data-value="time"]'
-    );
-
-  if (timeElement) {
-
-    const minutes =
-      Math.max(
-        1,
-        Math.ceil(
-          distance / 250
-        )
+    const rewardElement =
+      document.querySelector(
+        '[data-value="reward"]'
       );
 
 
-    timeElement.textContent =
-      `약 ${minutes}분`;
+    if (rewardElement) {
 
-  }
+      rewardElement.textContent =
+        `+${price.toLocaleString()}원`;
 
-
-  // ----------------------------
-  // 선택한 예약 정보 저장
-  // ----------------------------
-
-  const selectedReservation = {
-
-    reservationId:
-      Number(reservationId),
-
-    address:
-      address,
-
-    latitude:
-      latitude,
-
-    longitude:
-      longitude,
-
-    radius:
-      radius,
-
-    price:
-      price,
-
-    distance:
-      distance
-
-  };
+    }
 
 
-  sessionStorage.setItem(
-    "selectedReturnReservation",
-    JSON.stringify(
-      selectedReservation
-    )
-  );
+    // ====================================
+    // 반경
+    // ====================================
+
+    const radiusElement =
+      document.querySelector(
+        '[data-value="radius"]'
+      );
 
 
-  // ----------------------------
-  // 다음 페이지에도 정보 전달
-  // ----------------------------
+    if (radiusElement) {
 
-  // ----------------------------
-// 확인 → 실제 매칭 생성
-// ----------------------------
+      radiusElement.textContent =
+        `${radius}m`;
 
-const confirmButton =
-  document.getElementById(
-    "confirm-link"
-  );
+    }
 
 
-if (confirmButton) {
+    // ====================================
+    // 예상 추가 시간
+    // ====================================
 
-  confirmButton.addEventListener(
-    "click",
-    async function () {
+    const timeElement =
+      document.querySelector(
+        '[data-value="time"]'
+      );
 
-      const returnUserId =
+
+    if (timeElement) {
+
+      const minutes =
+        estimateMinutes(
+          distance
+        );
+
+
+      timeElement.textContent =
+        `약 ${minutes}분`;
+
+    }
+
+
+    // ====================================
+    // 선택 예약 저장
+    // ====================================
+
+    const selectedReservation = {
+
+      reservationId:
         Number(
-          localStorage.getItem(
-            "userId"
-          )
-        );
+          reservationId
+        ),
+
+      address:
+        address,
+
+      latitude:
+        latitude,
+
+      longitude:
+        longitude,
+
+      radius:
+        radius,
+
+      price:
+        price,
+
+      distance:
+        distance
+
+    };
 
 
-      if (!returnUserId) {
-
-        alert(
-          "로그인이 필요합니다."
-        );
-
-        window.location.href =
-          "index.html";
-
-        return;
-      }
+    sessionStorage.setItem(
+      "selectedReturnReservation",
+      JSON.stringify(
+        selectedReservation
+      )
+    );
 
 
-      confirmButton.disabled = true;
-      confirmButton.textContent =
-        "매칭 중...";
+    // ====================================
+    // 확인 → 실제 매칭
+    // ====================================
+
+    const confirmButton =
+      document.getElementById(
+        "confirm-link"
+      );
 
 
-      try {
+    if (confirmButton) {
 
-        const response =
-          await fetch(
-            `${API_BASE_URL}/matching`,
-            {
-              method: "POST",
+      confirmButton.addEventListener(
+        "click",
+        async function () {
 
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
-
-              body:
-                JSON.stringify({
-                  reservation_id:
-                    Number(reservationId),
-
-                  return_user_id:
-                    returnUserId,
-
-                  // MVP에서는 자전거 1번으로 임시 고정
-                  bike_id: 1
-                })
-            }
-          );
-
-
-        if (!response.ok) {
-
-          const errorData =
-            await response.json();
-
-
-          if (response.status === 409) {
-
-            alert(
-              "이미 다른 사용자가 선택한 요청입니다."
+          const returnUserId =
+            Number(
+              localStorage.getItem(
+                "userId"
+              )
             );
 
+
+          if (!returnUserId) {
+
+            alert(
+              "로그인이 필요합니다."
+            );
+
+
             window.location.href =
-              "return_recommend.html";
+              "index.html";
+
 
             return;
+
           }
 
 
-          throw new Error(
-            errorData.detail
-            ||
-            `매칭 실패: ${response.status}`
-          );
+          confirmButton.disabled =
+            true;
+
+
+          confirmButton.textContent =
+            "매칭 중...";
+
+
+          try {
+
+            const response =
+              await fetch(
+                `${API_BASE_URL}/matching`,
+                {
+                  method:
+                    "POST",
+
+                  headers: {
+                    "Content-Type":
+                      "application/json"
+                  },
+
+                  body:
+                    JSON.stringify({
+
+                      reservation_id:
+                        Number(
+                          reservationId
+                        ),
+
+                      return_user_id:
+                        returnUserId,
+
+                      // MVP용 임시 자전거 ID
+                      bike_id:
+                        1
+
+                    })
+                }
+              );
+
+
+            if (!response.ok) {
+
+              let errorData =
+                {};
+
+
+              try {
+
+                errorData =
+                  await response.json();
+
+              }
+
+              catch {
+                // 응답 JSON이 아닐 경우
+              }
+
+
+              if (
+                response.status === 409
+              ) {
+
+                alert(
+                  "이미 다른 사용자가 선택한 요청입니다."
+                );
+
+
+                window.location.href =
+                  "return_recommend.html";
+
+
+                return;
+
+              }
+
+
+              throw new Error(
+                errorData.detail
+                ||
+                `매칭 실패: ${response.status}`
+              );
+
+            }
+
+
+            const match =
+              await response.json();
+
+
+            console.log(
+              "매칭 성공:",
+              match
+            );
+
+
+            sessionStorage.setItem(
+              "currentMatch",
+              JSON.stringify(
+                match
+              )
+            );
+
+
+            window.location.href =
+              `return_route.html?${params.toString()}`;
+
+          }
+
+          catch (error) {
+
+            console.error(
+              "매칭 생성 오류:",
+              error
+            );
+
+
+            alert(
+              "매칭 처리에 실패했습니다."
+            );
+
+
+            confirmButton.disabled =
+              false;
+
+
+            confirmButton.textContent =
+              "확인";
+
+          }
 
         }
-
-
-        const match =
-          await response.json();
-
-
-        console.log(
-          "매칭 성공:",
-          match
-        );
-
-
-        // 다음 화면에서 사용
-        sessionStorage.setItem(
-          "currentMatch",
-          JSON.stringify(match)
-        );
-
-
-        // 실제 경로 안내 화면으로 이동
-        window.location.href =
-          `return_route.html?${params.toString()}`;
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "매칭 생성 오류:",
-          error
-        );
-
-
-        alert(
-          "매칭 처리에 실패했습니다."
-        );
-
-
-        confirmButton.disabled = false;
-        confirmButton.textContent =
-          "확인";
-
-      }
+      );
 
     }
-  );
+
+  }
 
 }
 
-}
 
 // ========================================
 // 반납 경로 화면
+// return_route.html
 // ========================================
 
 if (page === "route") {
@@ -875,27 +994,41 @@ if (page === "route") {
 
   const reservationId =
     Number(
-      params.get("reservation_id")
+      params.get(
+        "reservation_id"
+      )
     );
+
 
   const reservationLatitude =
     Number(
-      params.get("latitude")
+      params.get(
+        "latitude"
+      )
     );
+
 
   const reservationLongitude =
     Number(
-      params.get("longitude")
+      params.get(
+        "longitude"
+      )
     );
+
 
   const reservationRadius =
     Number(
-      params.get("radius")
+      params.get(
+        "radius"
+      )
     );
+
 
   const reservationPrice =
     Number(
-      params.get("price")
+      params.get(
+        "price"
+      )
     );
 
 
@@ -904,20 +1037,24 @@ if (page === "route") {
       "route-map"
     );
 
+
   const distanceElement =
     document.getElementById(
       "distance-to-boundary"
     );
+
 
   const timeElement =
     document.getElementById(
       "route-time"
     );
 
+
   const statusElement =
     document.getElementById(
       "location-status"
     );
+
 
   const returnButton =
     document.getElementById(
@@ -925,22 +1062,29 @@ if (page === "route") {
     );
 
 
-  let map = null;
-
-  let currentMarker = null;
-
-  let reservationMarker = null;
-
-  let reservationCircle = null;
-
-  let latestLatitude = null;
-
-  let latestLongitude = null;
+  let map =
+    null;
 
 
-  // ------------------------------------
+  let currentMarker =
+    null;
+
+
+  let latestLatitude =
+    null;
+
+
+  let latestLongitude =
+    null;
+
+
+  let watchId =
+    null;
+
+
+  // ======================================
   // 지도 초기화
-  // ------------------------------------
+  // ======================================
 
   function initializeRouteMap() {
 
@@ -958,13 +1102,14 @@ if (page === "route") {
           center:
             reservationPosition,
 
-          level: 4
+          level:
+            4
         }
       );
 
 
-    // 예약 위치 중심
-    reservationMarker =
+    // 중심 마커
+    const reservationMarker =
       new kakao.maps.Marker({
         position:
           reservationPosition
@@ -976,8 +1121,8 @@ if (page === "route") {
     );
 
 
-    // 실제 반납 가능 영역
-    reservationCircle =
+    // 반납 가능 원
+    const reservationCircle =
       new kakao.maps.Circle({
 
         center:
@@ -986,7 +1131,8 @@ if (page === "route") {
         radius:
           reservationRadius,
 
-        strokeWeight: 2,
+        strokeWeight:
+          2,
 
         strokeColor:
           "#10bb89",
@@ -1013,9 +1159,9 @@ if (page === "route") {
   }
 
 
-  // ------------------------------------
+  // ======================================
   // 현재 위치 마커
-  // ------------------------------------
+  // ======================================
 
   function updateCurrentMarker(
     latitude,
@@ -1055,9 +1201,9 @@ if (page === "route") {
   }
 
 
-  // ------------------------------------
-  // 실제 서버에 위치 확인
-  // ------------------------------------
+  // ======================================
+  // 서버에서 위치 검증
+  // ======================================
 
   async function checkCurrentLocation(
     latitude,
@@ -1070,7 +1216,8 @@ if (page === "route") {
         await fetch(
           `${API_BASE_URL}/matching/check-location`,
           {
-            method: "POST",
+            method:
+              "POST",
 
             headers: {
               "Content-Type":
@@ -1079,6 +1226,7 @@ if (page === "route") {
 
             body:
               JSON.stringify({
+
                 reservation_id:
                   reservationId,
 
@@ -1087,6 +1235,7 @@ if (page === "route") {
 
                 longitude:
                   longitude
+
               })
           }
         );
@@ -1111,38 +1260,52 @@ if (page === "route") {
       );
 
 
-      // 중심점까지 실제 거리
       const centerDistance =
         data.distance;
 
 
-      // 반납 바운더리까지 남은 거리
       const distanceToBoundary =
         Math.max(
           0,
           centerDistance
-          - reservationRadius
+          -
+          reservationRadius
         );
 
 
-      if (data.inside) {
+      // ==================================
+      // 반납 영역 안
+      // ==================================
+
+      if (
+        data.inside
+      ) {
 
         distanceElement.textContent =
           "도착";
 
+
         timeElement.textContent =
           "0분";
+
 
         statusElement.textContent =
           "반납 가능 구역에 도착했습니다.";
 
+
         returnButton.disabled =
           false;
 
+
         returnButton.textContent =
-          `반납하기 (+${reservationPrice}원 할인)`;
+          `반납하기 (+${reservationPrice.toLocaleString()}원 할인)`;
 
       }
+
+
+      // ==================================
+      // 아직 반납 영역 밖
+      // ==================================
 
       else {
 
@@ -1157,12 +1320,8 @@ if (page === "route") {
 
 
         const minutes =
-          Math.max(
-            1,
-            Math.ceil(
-              distanceToBoundary
-              / 250
-            )
+          estimateMinutes(
+            distanceToBoundary
           );
 
 
@@ -1201,9 +1360,9 @@ if (page === "route") {
   }
 
 
-  // ------------------------------------
-  // GPS 위치 업데이트
-  // ------------------------------------
+  // ======================================
+  // GPS 위치 변경
+  // ======================================
 
   function handlePosition(
     position
@@ -1211,6 +1370,7 @@ if (page === "route") {
 
     latestLatitude =
       position.coords.latitude;
+
 
     latestLongitude =
       position.coords.longitude;
@@ -1253,130 +1413,175 @@ if (page === "route") {
   }
 
 
-  // ------------------------------------
-  // 실제 반납 처리
-  // ------------------------------------
+  // ======================================
+  // 실제 반납
+  // ======================================
 
-  returnButton.addEventListener(
-    "click",
-    async function () {
+  if (
+    returnButton
+  ) {
 
-      if (
-        latestLatitude === null
-        ||
-        latestLongitude === null
-      ) {
+    returnButton.addEventListener(
+      "click",
+      async function () {
 
-        alert(
-          "현재 위치를 확인할 수 없습니다."
-        );
+        if (
+          latestLatitude === null
+          ||
+          latestLongitude === null
+        ) {
 
-        return;
-      }
-
-
-      returnButton.disabled =
-        true;
-
-      returnButton.textContent =
-        "반납 처리 중...";
-
-
-      try {
-
-        const response =
-          await fetch(
-            `${API_BASE_URL}/returns`,
-            {
-              method:
-                "POST",
-
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
-
-              body:
-                JSON.stringify({
-                  reservation_id:
-                    reservationId,
-
-                  latitude:
-                    latestLatitude,
-
-                  longitude:
-                    latestLongitude
-                })
-            }
+          alert(
+            "현재 위치를 확인할 수 없습니다."
           );
 
-
-        if (!response.ok) {
-
-          const errorData =
-            await response.json();
-
-
-          throw new Error(
-            errorData.detail
-            ||
-            `반납 실패: ${response.status}`
-          );
+          return;
 
         }
 
 
-        const result =
-          await response.json();
-
-
-        console.log(
-          "반납 성공:",
-          result
-        );
-
-
-        sessionStorage.setItem(
-          "returnResult",
-          JSON.stringify(
-            result
-          )
-        );
-
-
-        window.location.href =
-          "return_complete.html";
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "반납 처리 오류:",
-          error
-        );
-
-
-        alert(
-          error.message
-        );
-
-
         returnButton.disabled =
-          false;
+          true;
+
 
         returnButton.textContent =
-          "반납하기";
+          "반납 처리 중...";
+
+
+        try {
+
+          const response =
+            await fetch(
+              `${API_BASE_URL}/returns`,
+              {
+                method:
+                  "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body:
+                  JSON.stringify({
+
+                    reservation_id:
+                      reservationId,
+
+                    latitude:
+                      latestLatitude,
+
+                    longitude:
+                      latestLongitude
+
+                  })
+              }
+            );
+
+
+          if (!response.ok) {
+
+            let errorData =
+              {};
+
+
+            try {
+
+              errorData =
+                await response.json();
+
+            }
+
+            catch {
+              // JSON 응답이 아닌 경우
+            }
+
+
+            throw new Error(
+              errorData.detail
+              ||
+              `반납 실패: ${response.status}`
+            );
+
+          }
+
+
+          // 여기 result 안에
+          // 서버의 실제 discount가 들어있음
+          const result =
+            await response.json();
+
+
+          console.log(
+            "반납 성공:",
+            result
+          );
+
+
+          console.log(
+            "실제 할인 금액:",
+            result.discount
+          );
+
+
+          // ★ 핵심
+          // 실제 /returns 결과 저장
+          sessionStorage.setItem(
+            "returnResult",
+            JSON.stringify(
+              result
+            )
+          );
+
+
+          if (
+            watchId !== null
+          ) {
+
+            navigator.geolocation.clearWatch(
+              watchId
+            );
+
+          }
+
+
+          // 완료 화면 이동
+          window.location.href =
+            "return_complete.html";
+
+        }
+
+        catch (error) {
+
+          console.error(
+            "반납 처리 오류:",
+            error
+          );
+
+
+          alert(
+            error.message
+          );
+
+
+          returnButton.disabled =
+            false;
+
+
+          returnButton.textContent =
+            `반납하기 (+${reservationPrice.toLocaleString()}원 할인)`;
+
+        }
 
       }
+    );
 
-    }
-  );
+  }
 
 
-  // ------------------------------------
-  // 실행
-  // ------------------------------------
+  // ======================================
+  // route 화면 실행
+  // ======================================
 
   if (
     !reservationId
@@ -1397,6 +1602,7 @@ if (page === "route") {
     alert(
       "반납 요청 정보를 찾을 수 없습니다."
     );
+
 
     window.location.href =
       "return_recommend.html";
@@ -1419,21 +1625,140 @@ if (page === "route") {
 
     else {
 
-      // 계속 위치 추적
-      navigator.geolocation.watchPosition(
-        handlePosition,
-        handlePositionError,
-        {
-          enableHighAccuracy:
-            true,
+      watchId =
+        navigator.geolocation.watchPosition(
 
-          timeout:
-            10000,
+          handlePosition,
 
-          maximumAge:
-            5000
-        }
+          handlePositionError,
+
+          {
+            enableHighAccuracy:
+              true,
+
+            timeout:
+              10000,
+
+            maximumAge:
+              5000
+          }
+
+        );
+
+    }
+
+  }
+
+}
+
+
+// ========================================
+// 반납 완료 화면
+// return_complete.html
+// ========================================
+
+if (page === "complete") {
+
+  const discountElement =
+    document.getElementById(
+      "discount-amount"
+    );
+
+
+  const savedResult =
+    sessionStorage.getItem(
+      "returnResult"
+    );
+
+
+  console.log(
+    "저장된 반납 결과:",
+    savedResult
+  );
+
+
+  if (
+    savedResult
+  ) {
+
+    try {
+
+      const result =
+        JSON.parse(
+          savedResult
+        );
+
+
+      const discount =
+        Number(
+          result.discount
+        );
+
+
+      console.log(
+        "완료 화면 할인 금액:",
+        discount
       );
+
+
+      if (
+        discountElement
+        &&
+        Number.isFinite(
+          discount
+        )
+      ) {
+
+        discountElement.textContent =
+          `${discount.toLocaleString()}원`;
+
+      }
+
+      else if (
+        discountElement
+      ) {
+
+        discountElement.textContent =
+          "할인 적용 완료";
+
+      }
+
+    }
+
+    catch (error) {
+
+      console.error(
+        "반납 결과 읽기 오류:",
+        error
+      );
+
+
+      if (
+        discountElement
+      ) {
+
+        discountElement.textContent =
+          "할인 적용 완료";
+
+      }
+
+    }
+
+  }
+
+  else {
+
+    console.warn(
+      "sessionStorage에 returnResult가 없습니다."
+    );
+
+
+    if (
+      discountElement
+    ) {
+
+      discountElement.textContent =
+        "할인 적용 완료";
 
     }
 
