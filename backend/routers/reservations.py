@@ -3,10 +3,40 @@ from sqlalchemy.orm import Session
 
 from backend.database import get_db
 from backend.models import Reservation
-from backend.schemas import ReservationCreate, ReservationResponse
+from backend.schemas import (
+    ReservationCreate,
+    ReservationResponse,
+    ReservationPriceRequest,
+    ReservationPriceResponse
+)
 
 
 router = APIRouter()
+
+
+def calculate_price(radius: int) -> int:
+    if radius <= 100:
+        return 500
+    elif radius <= 200:
+        return 400
+    elif radius <= 300:
+        return 300
+    else:
+        return 200
+
+
+@router.post(
+    "/reservations/price",
+    response_model=ReservationPriceResponse
+)
+def get_reservation_price(
+    price_data: ReservationPriceRequest
+):
+    price = calculate_price(price_data.radius)
+
+    return {
+        "price": price
+    }
 
 
 @router.post(
@@ -17,6 +47,8 @@ def create_reservation(
     reservation_data: ReservationCreate,
     db: Session = Depends(get_db)
 ):
+    price = calculate_price(reservation_data.radius)
+
     new_reservation = Reservation(
         user_id=reservation_data.user_id,
         address=reservation_data.address,
@@ -25,7 +57,7 @@ def create_reservation(
         radius=reservation_data.radius,
         start_time=reservation_data.start_time,
         end_time=reservation_data.end_time,
-        price=reservation_data.price,
+        price=price,
         status="WAITING"
     )
 
