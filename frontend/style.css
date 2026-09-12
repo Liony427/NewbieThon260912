@@ -305,3 +305,5 @@
   cursor: pointer;
   padding: 0;
 }
+/* Keep the button label from intercepting clicks. */
+.element .text-wrapper-5 { pointer-events: none; }

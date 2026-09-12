@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, field_validator
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
 class ReservationCreate(BaseModel):
@@ -69,9 +69,9 @@ class MatchResponse(BaseModel):
 
 
 class SignupRequest(BaseModel):
-    name: str
-    email: EmailStr
-    password: str
+    name: str | None = Field(default=None, min_length=1, max_length=50)
+    email: EmailStr = Field(max_length=254)
+    password: str = Field(min_length=8, max_length=128)
 
     @field_validator("email")
     @classmethod
