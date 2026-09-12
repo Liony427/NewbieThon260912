@@ -961,3 +961,45 @@ dialog p {
 
   white-space: nowrap;
 }
+
+/* 로그아웃 버튼용 Freesentation 5 */
+@font-face {
+  font-family: "Freesentation-5Medium";
+  src: url("./fonts/Freesentation-5Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 메인 화면 로그아웃 버튼 */
+.home .home-logout {
+  align-self: center;
+  flex-shrink: 0;
+
+  width: 118px;
+  max-width: 100%;
+  min-height: 50px;
+  margin-top: clamp(32px, 6vw, 54px);
+  padding: 10px 16px;
+
+  border: 1px solid #c5ccca;
+  border-radius: 16px;
+  background: #fcfdfc;
+  color: #000;
+
+  font-family: "Freesentation-5Medium", Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  cursor: pointer;
+}
+
+.home .home-logout:hover {
+  background: #edf7f3;
+}
+
+.home .home-logout:focus-visible {
+  outline: 3px solid #087b58;
+  outline-offset: 4px;
+}

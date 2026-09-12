@@ -32,7 +32,7 @@ form.addEventListener("submit", async (event) => {
     if (!response.ok) {
       const data = await response.json().catch(() => ({}));
       throw new Error(response.status === 409 ? "이미 가입된 이메일입니다. 로그인해주세요."
-        : response.status === 422 ? "이메일 형식과 비밀번호 길이(8~128자)를 확인해주세요."
+        : response.status === 422 ? "이메일 형식과 비밀번호 길이(8~20자)를 확인해주세요."
         : typeof data.detail === "string" ? data.detail : "회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.");
     }
     form.reset();

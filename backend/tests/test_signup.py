@@ -48,7 +48,7 @@ class SignupTests(unittest.TestCase):
         for body in [
             {'email': 'invalid', 'password': 'password123'},
             {'email': 'user@example.com', 'password': 'short'},
-            {'email': 'user@example.com', 'password': 'a' * 129},
+            {'email': 'user@example.com', 'password': 'a' * 21},
             {'email': 'user@example.com'},
         ]:
             with self.subTest(body=body):
@@ -58,3 +58,12 @@ class SignupTests(unittest.TestCase):
         response = self.client.post('/auth/signup', json={'name': '사용자', 'email': 'named@example.com', 'password': 'password123'})
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json()['name'], '사용자')
+
+    def test_password_length_boundaries(self):
+        for length in (8, 20):
+            with self.subTest(length=length):
+                response = self.client.post('/auth/signup', json={
+                    'email': f'boundary{length}@example.com',
+                    'password': 'a' * length,
+                })
+                self.assertEqual(response.status_code, 201)
