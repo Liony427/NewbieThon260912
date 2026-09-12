@@ -1,3 +1,151 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>반납하기 | 바톤터치</title><link rel="stylesheet" href="return_flow.css"><script src="return_flow.js" defer></script></head>
-<body><div class="app"><header><a class="brand" href="main.html" aria-label="바톤터치 홈"><img src="img/logo.png" alt="바톤터치" width="70" height="70"></a><span class="divider" aria-hidden="true">|</span><h1>반납하기</h1></header><main class="confirm-screen"><section class="confirmation" aria-labelledby="confirm-title"><span class="badge large"><svg class="icon " viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 16 6 6L25 8" stroke-width="5"/></svg></span><h2 id="confirm-title">이 요청으로 반납할까요?</h2><p class="subtitle">아래 정보를 확인하고 진행해주세요.</p><dl class="details"><div><dt><svg class="icon " viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h10l15 15-10 10L4 14Z"/><circle cx="10" cy="10" r="2"/></svg>추가 할인</dt><dd data-value="reward"></dd></div><div><dt><svg class="icon " viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke-dasharray="6 4"/></svg>반경</dt><dd data-value="distance"></dd></div><div><dt><svg class="icon " viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M16 7v10l6 6"/></svg>예상 추가 시간</dt><dd data-value="time"></dd></div></dl><div class="actions"><a class="secondary" href="return_recommend.html">취소</a><a class="primary" id="confirm-link" href="return_route.html">확인</a></div></section></main></div></body></html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    >
+
+    <title>반납 확인 | 바톤터치</title>
+
+    <link rel="stylesheet" href="return_flow.css">
+    <script src="return_flow.js" defer></script>
+  </head>
+
+  <body data-page="confirm">
+    <div class="app">
+      <header class="header">
+        <a
+          class="brand"
+          href="main.html"
+          aria-label="바톤터치 홈"
+        >
+          <img src="img/logo.png" alt="바톤터치">
+        </a>
+
+        <span class="header-divider" aria-hidden="true">|</span>
+
+        <h1>반납하기</h1>
+      </header>
+
+      <main class="confirm-screen">
+        <section
+          class="confirmation"
+          aria-labelledby="confirm-title"
+        >
+          <span class="badge badge-large">
+            <svg
+              class="check-icon"
+              viewBox="0 0 32 32"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M7 16L13 22L25 8"
+                stroke="currentColor"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+
+          <h2 id="confirm-title">
+            이 요청으로 반납할까요?
+          </h2>
+
+          <p class="subtitle">
+            아래 정보를 확인하고 진행해주세요.
+          </p>
+
+          <dl class="details">
+            <div class="detail-row">
+              <dt>
+                <svg
+                  class="detail-icon"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 4H14L29 19L19 29L4 14Z" />
+                  <circle cx="10" cy="10" r="2" />
+                </svg>
+
+                추가 할인
+              </dt>
+
+              <dd data-value="reward">—</dd>
+            </div>
+
+            <div class="detail-row">
+              <dt>
+                <span
+                  class="radius-icon"
+                  aria-hidden="true"
+                ></span>
+
+                반경
+              </dt>
+
+              <dd data-value="radius">—</dd>
+            </div>
+
+            <div class="detail-row">
+              <dt>
+                <svg
+                  class="detail-icon"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="16" cy="16" r="13" />
+                  <path d="M16 7V17L22 23" />
+                </svg>
+
+                예상 추가 시간
+              </dt>
+
+              <dd data-value="time">—</dd>
+            </div>
+          </dl>
+
+          <p
+            id="selection-error"
+            class="selection-error"
+            role="status"
+            hidden
+          >
+            추천 정보가 없어요. 취소를 눌러 다시 선택해 주세요.
+          </p>
+
+          <div class="actions">
+            <a
+              class="secondary"
+              id="cancel-link"
+              href="return_recommend.html"
+            >
+              취소
+            </a>
+
+            <button
+              class="primary"
+              id="confirm-button"
+              type="button"
+              disabled
+            >
+              확인
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,3 +1,150 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>반납하기 | 바톤터치</title><link rel="stylesheet" href="return_flow.css"><script src="return_flow.js" defer></script></head>
-<body><div class="app"><header><a class="brand" href="main.html" aria-label="바톤터치 홈"><img src="img/logo.png" alt="바톤터치" width="70" height="70"></a><span class="divider" aria-hidden="true">|</span><h1>반납하기</h1></header><main class="screen recommend-screen"><div class="map" role="img" aria-label="지도 표시 영역"></div><section class="sheet recommendations"><div class="handle" aria-hidden="true"></div><h2>추천 요청</h2><p class="subtitle">지금 반납하면 받을 수 있는 추가 보상이에요!</p><div class="choices"><a class="recommendation" href="return_confirm.html?choice=0"><span class="badge small"><svg class="icon " viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 2C9 2 4 7 4 14c0 9 12 17 12 17s12-8 12-17C28 7 23 2 16 2Z" fill="currentColor" stroke="white"/><circle cx="16" cy="13" r="5" fill="#d9d9d9" stroke="white"/></svg></span><span class="destination"><strong>안암역 방향</strong><span>약 420m · 2분 거리</span></span><strong class="reward">+173원</strong><span class="chevron" aria-hidden="true"></span></a><a class="recommendation" href="return_confirm.html?choice=1"><span class="badge small"><svg class="icon " viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 2C9 2 4 7 4 14c0 9 12 17 12 17s12-8 12-17C28 7 23 2 16 2Z" fill="currentColor" stroke="white"/><circle cx="16" cy="13" r="5" fill="#d9d9d9" stroke="white"/></svg></span><span class="destination"><strong>고려대역 방향</strong><span>약 650m · 3분 거리</span></span><strong class="reward">+378원</strong><span class="chevron" aria-hidden="true"></span></a><a class="recommendation" href="return_confirm.html?choice=2"><span class="badge small"><svg class="icon " viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 2C9 2 4 7 4 14c0 9 12 17 12 17s12-8 12-17C28 7 23 2 16 2Z" fill="currentColor" stroke="white"/><circle cx="16" cy="13" r="5" fill="#d9d9d9" stroke="white"/></svg></span><span class="destination"><strong>월곡역 방향</strong><span>약 1.5km · 10분 거리</span></span><strong class="reward">+594원</strong><span class="chevron" aria-hidden="true"></span></a></div><a class="primary" href="return_confirm.html?choice=0">추천 보기</a></section></main></div></body></html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    >
+
+    <title>반납 추천 | 바톤터치</title>
+
+    <link rel="stylesheet" href="return_flow.css">
+    <script src="return_flow.js" defer></script>
+  </head>
+
+  <body data-page="recommend">
+    <div class="app">
+      <header class="header">
+        <a
+          class="brand"
+          href="main.html"
+          aria-label="바톤터치 홈"
+        >
+          <img src="img/logo.png" alt="바톤터치">
+        </a>
+
+        <span class="header-divider" aria-hidden="true">|</span>
+
+        <h1>반납하기</h1>
+      </header>
+
+      <main class="screen">
+        <div
+          class="map"
+          role="img"
+          aria-label="지도 표시 예정 영역"
+        ></div>
+
+        <section class="sheet recommendation-sheet">
+          <div class="handle" aria-hidden="true"></div>
+
+          <h2>추천 요청</h2>
+
+          <p class="subtitle">
+            지금 반납하면 받을 수 있는 추가 보상이에요!
+          </p>
+
+          <form
+            id="recommendation-form"
+            action="return_confirm.html"
+            method="get"
+          >
+            <fieldset class="recommendation-list">
+              <legend class="sr-only">
+                반납할 추천 장소를 선택해 주세요.
+              </legend>
+
+              <label class="recommendation-option">
+                <input
+                  type="radio"
+                  name="choice"
+                  value="0"
+                  checked
+                >
+
+                <span class="recommendation-card">
+                  <span class="badge badge-small">
+                    <img
+                      src="img/location pick.png"
+                      alt=""
+                      class="location-icon"
+                    >
+                  </span>
+
+                  <span class="destination">
+                    <strong>안암역 방향</strong>
+                    <span>약 420m · 2분 거리</span>
+                  </span>
+
+                  <strong class="reward">+173원</strong>
+
+                  <span class="chevron" aria-hidden="true"></span>
+                </span>
+              </label>
+
+              <label class="recommendation-option">
+                <input
+                  type="radio"
+                  name="choice"
+                  value="1"
+                >
+
+                <span class="recommendation-card">
+                  <span class="badge badge-small">
+                    <img
+                      src="img/location pick.png"
+                      alt=""
+                      class="location-icon"
+                    >
+                  </span>
+
+                  <span class="destination">
+                    <strong>고려대역 방향</strong>
+                    <span>약 650m · 3분 거리</span>
+                  </span>
+
+                  <strong class="reward">+378원</strong>
+
+                  <span class="chevron" aria-hidden="true"></span>
+                </span>
+              </label>
+
+              <label class="recommendation-option">
+                <input
+                  type="radio"
+                  name="choice"
+                  value="2"
+                >
+
+                <span class="recommendation-card">
+                  <span class="badge badge-small">
+                    <img
+                      src="img/location pick.png"
+                      alt=""
+                      class="location-icon"
+                    >
+                  </span>
+
+                  <span class="destination">
+                    <strong>월곡역 방향</strong>
+                    <span>약 1.5km · 10분 거리</span>
+                  </span>
+
+                  <strong class="reward">+594원</strong>
+
+                  <span class="chevron" aria-hidden="true"></span>
+                </span>
+              </label>
+            </fieldset>
+
+            <button class="primary" type="submit">
+              추천 보기
+            </button>
+          </form>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
