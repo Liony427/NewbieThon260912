@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>
+      매칭 완료 | 바톤터치
+    </title>
+    <link rel="stylesheet" href="reservation_flow.css">
+    <script src="reservation_flow.js" defer>
+    </script>
+  </head>
+  <body data-page="matched">
+    <div class="app">
+      <header class="header">
+        <a class="brand" href="main.html" aria-label="바톤터치 홈">
+          <img src="img/logo.png" width="70" height="70" alt="바톤터치">
+        </a>
+      </header>
+      <main class="overlay-screen matched-screen">
+        <section class="modal matched" aria-labelledby="matched-title">
+          <span class="badge">
+            <svg class="icon icon-bell" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path fill="currentColor" stroke="none" d="M16 1a4 4 0 0 0-4 3C7 6 6 9 6 15v6l-4 4v2h28v-2l-4-4v-6c0-6-1-9-6-11a4 4 0 0 0-4-3Zm-4 28a4 4 0 0 0 8 0Z"/>
+            </svg>
+          </span>
+          <h2 id="matched-title">
+            매칭 완료!
+          </h2>
+          <p class="subtitle">
+            곧 자전거가 목적지 반경에 도착해요.
+          </p>
+          <button class="primary" id="view-location" type="button">
+            위치 확인
+          </button>
+        </section>
+        <section class="location-preview" id="location-preview" hidden>
+          <h2>
+            자전거 위치
+          </h2>
+          <p>
+            매칭된 자전거의 위치 정보가 아직 연결되지 않았어요.
+          </p>
+          <button class="primary" id="close-location" type="button">
+            돌아가기
+          </button>
+        </section>
+      </main>
+    </div>
+    <p class="toast" id="status" role="status" hidden>
+    </p>
+  </body>
+</html>
