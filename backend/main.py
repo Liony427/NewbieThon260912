@@ -9,7 +9,6 @@ from backend.routers import matching, reservations
 
 Base.metadata.create_all(bind=engine)
 
-
 app = FastAPI(
     title="자전거 바톤터치 API",
     version="0.1.0"
