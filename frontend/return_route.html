@@ -2,51 +2,65 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8">
-
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     >
-
     <title>반납 경로 | 바톤터치</title>
 
     <link rel="stylesheet" href="return_flow.css">
     <script src="return_flow.js" defer></script>
   </head>
 
-  <body data-page="route">
+  <body>
     <div class="app">
-      <header class="header">
-        <a
-          class="brand"
-          href="main.html"
-          aria-label="바톤터치 홈"
-        >
-          <img src="img/logo.png" alt="바톤터치">
+      <header>
+        <a class="brand" href="main.html" aria-label="바톤터치 홈">
+          <img
+            src="img/logo.png"
+            alt="바톤터치"
+            width="70"
+            height="70"
+          >
         </a>
 
-        <span class="header-divider" aria-hidden="true">|</span>
-
+        <span class="divider" aria-hidden="true">|</span>
         <h1>반납 경로</h1>
       </header>
 
-      <main class="screen">
+      <main class="screen route-screen">
         <div
           class="map"
           role="img"
-          aria-label="반납 경로 지도 표시 예정 영역"
+          aria-label="반납 경로 지도 표시 영역"
         ></div>
 
-        <section class="sheet route-sheet">
+        <section
+          class="sheet route-sheet"
+          aria-label="반납 경로 안내"
+        >
           <div class="handle" aria-hidden="true"></div>
 
           <div class="route-stats">
-            <div class="route-stat">
+            <div>
               <span class="badge">
-                <span
-                  class="radius-icon"
+                <svg
+                  class="icon"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                   aria-hidden="true"
-                ></span>
+                >
+                  <circle
+                    cx="16"
+                    cy="16"
+                    r="13"
+                    stroke-dasharray="6 4"
+                  />
+                </svg>
               </span>
 
               <p>
@@ -55,19 +69,20 @@
               </p>
             </div>
 
-            <div class="route-stat">
+            <div>
               <span class="badge">
                 <svg
-                  class="stat-icon"
+                  class="icon"
                   viewBox="0 0 32 32"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
+                  stroke-linejoin="round"
                   aria-hidden="true"
                 >
                   <circle cx="16" cy="16" r="13" />
-                  <path d="M16 7V17L22 23" />
+                  <path d="M16 7v10l6 6" />
                 </svg>
               </span>
 
@@ -77,17 +92,6 @@
               </p>
             </div>
           </div>
-
-          <!--
-            실제 반납 완료 API가 연결되면 이 미리보기 링크를 제거합니다.
-          -->
-          <a
-            class="preview-link"
-            id="complete-preview-link"
-            href="return_complete.html"
-          >
-            완료 화면 미리보기
-          </a>
         </section>
       </main>
     </div>
