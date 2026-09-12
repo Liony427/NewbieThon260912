@@ -57,7 +57,7 @@
 .element .p {
   top: 227px;
   left: calc(50.00% - 106px);
-  font-family: "Freesentation-SemiBold", Helvetica;
+  font-family: "Freesentation-6SemiBold", Helvetica;
   font-weight: 400;
   color: transparent;
   font-size: 17px;
@@ -73,7 +73,7 @@
 }
 
 .element .span {
-  font-family: "Freesentation-Regular", Helvetica;
+  font-family: "Freesentation-4Regular", Helvetica;
   color: #000000;
 }
 
