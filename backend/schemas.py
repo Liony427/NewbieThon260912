@@ -1,40 +1,39 @@
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from pydantic import BaseModel, EmailStr, field_validator
 
 
 class ReservationCreate(BaseModel):
     user_id: int
-
     address: str
     latitude: float
     longitude: float
-
     radius: int
-
     start_time: str
     end_time: str
-
-    price: int
 
 
 class ReservationResponse(BaseModel):
     id: int
     user_id: int
-
     address: str
     latitude: float
     longitude: float
-
     radius: int
-
     start_time: str
     end_time: str
-
     price: int
     status: str
 
     model_config = {
         "from_attributes": True
     }
+
+
+class ReservationPriceRequest(BaseModel):
+    radius: int
+
+
+class ReservationPriceResponse(BaseModel):
+    price: int
 
 
 class MatchCreate(BaseModel):
@@ -54,21 +53,15 @@ class MatchResponse(BaseModel):
         "from_attributes": True
     }
 
-class SignupRequest(BaseModel):
-    name: str = Field(min_length=1, max_length=50)
-    email: EmailStr = Field(max_length=254)
-    password: str = Field(min_length=8, max_length=128)
 
-    @field_validator("name", mode="before")
-    @classmethod
-    def trim_name(cls, value):
-        if isinstance(value, str):
-            return value.strip()
-        return value
+class SignupRequest(BaseModel):
+    name: str
+    email: EmailStr
+    password: str
 
     @field_validator("email")
     @classmethod
-    def normalize_email(cls, value: str) -> str:
+    def normalize_email(cls, value):
         return value.lower()
 
 
@@ -80,3 +73,28 @@ class SignupResponse(BaseModel):
     model_config = {
         "from_attributes": True
     }
+
+
+class LocationCheckRequest(BaseModel):
+    reservation_id: int
+    latitude: float
+    longitude: float
+
+
+class LocationCheckResponse(BaseModel):
+    inside: bool
+    distance: float
+
+
+class ReturnRequest(BaseModel):
+    reservation_id: int
+    latitude: float
+    longitude: float
+
+
+class ReturnResponse(BaseModel):
+    reservation_id: int
+    bike_id: int
+    discount: int
+    status: str
+    message: str
