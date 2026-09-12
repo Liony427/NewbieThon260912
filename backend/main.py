@@ -1,8 +1,18 @@
 from fastapi import FastAPI
 
-app = FastAPI(title="바톤터치 API", version="0.1.0")
+from backend.database import Base, engine
+from backend import models
 
 
-@app.get("/health", tags=["health"])
-def health() -> dict[str, str]:
-    return {"status": "ok"}
+Base.metadata.create_all(bind=engine)
+
+
+app = FastAPI(
+    title="자전거 바톤터치 API",
+    version="0.1.0"
+)
+
+
+@app.get("/")
+def root():
+    return {"message": "자전거 바톤터치 API"}
