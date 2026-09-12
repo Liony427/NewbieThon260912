@@ -34,8 +34,8 @@ a {
 }
 
 @font-face {
-  font-family: "Freesentation-4Regular";
+  font-family: "Freesentation-5Medium";
   src: url("./fonts/Freesentation-5Medium.ttf") format("truetype");
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
