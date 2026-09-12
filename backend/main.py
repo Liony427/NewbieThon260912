@@ -1,5 +1,9 @@
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from backend.database import Base, engine
 from backend import models
@@ -16,7 +20,6 @@ app = FastAPI(
 )
 
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -29,18 +32,25 @@ app.add_middleware(
 )
 
 
-# Auth
 app.include_router(auth_router)
-
-# Matching
 app.include_router(matching.router)
-
-# Reservation
 app.include_router(reservations.router)
 
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
+
+
 @app.get("/")
-def root():
-    return {
-        "message": "자전거 바톤터치 API"
-    }
+def frontend_index():
+    return FileResponse(FRONTEND_DIR / "index.html")
+
+
+app.mount(
+    "/",
+    StaticFiles(
+        directory=str(FRONTEND_DIR),
+        html=True
+    ),
+    name="frontend"
+)
