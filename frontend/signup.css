@@ -22,3 +22,41 @@ button:disabled { opacity: .65; cursor: wait; }
 [hidden] { display: none !important; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 @media (max-width: 360px) { .signup-page { padding-left: 16px; padding-right: 16px; } .signup-card { padding-left: 18px; padding-right: 18px; } .brand p { font-size: 15px; } }
+
+/* 모바일 반응형 보정 */
+.signup-page {
+  width: 100%;
+  max-width: 600px;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin-inline: auto;
+
+  padding-left: clamp(16px, 6vw, 32px);
+  padding-right: clamp(16px, 6vw, 32px);
+}
+
+/* 좁은 화면에서도 로고가 영역 밖으로 나가지 않도록 */
+.signup-page .logo {
+  width: min(281px, 100%);
+  height: auto;
+  aspect-ratio: 1;
+}
+
+/* 문구가 길면 자연스럽게 줄바꿈 */
+.signup-page .brand p {
+  width: 100%;
+  white-space: normal;
+  font-size: clamp(15px, 4.2vw, 17px);
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.signup-page .signup-card {
+  padding-left: clamp(18px, 6vw, 24px);
+  padding-right: clamp(18px, 6vw, 24px);
+}
+
+.signup-page .login-link {
+  line-height: 1.5;
+  word-break: keep-all;
+}
