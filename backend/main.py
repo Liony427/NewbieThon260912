@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from backend.database import Base, engine
 from backend import models
+from backend.routers.auth import router as auth_router
 from backend.routers import matching
 
 
@@ -14,9 +15,15 @@ app = FastAPI(
 )
 
 
+app.include_router(auth_router)
 app.include_router(matching.router)
 
 
 @app.get("/")
 def root():
     return {"message": "자전거 바톤터치 API"}
+
+
+@app.get("/health", tags=["health"])
+def health() -> dict[str, str]:
+    return {"status": "ok"}
