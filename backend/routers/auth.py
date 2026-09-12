@@ -48,7 +48,7 @@ def signup(
         )
 
     new_user = User(
-        name=body.name,
+        name=body.name or str(body.email).split("@")[0][:50],
         email=body.email,
         password_hash=password_hasher.hash(body.password)
     )

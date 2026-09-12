@@ -1,0 +1,24 @@
+body { background: #fcfdfc; font-family: "Freesentation-5Medium", Helvetica, sans-serif; }
+.signup-page { width: 402px; max-width: 100%; min-height: 874px; padding: 93px 24px 40px; background: linear-gradient(180deg, #fcfdfc 31%, #f0faf6 100%); }
+.brand { position: relative; height: 302px; text-align: center; }
+.logo { display: block; width: 281px; height: 281px; margin: 0 auto; object-fit: contain; }
+.brand p { position: absolute; top: 227px; left: 50%; transform: translateX(-50%); margin: 0; white-space: nowrap; font-family: "Freesentation-6SemiBold", Helvetica, sans-serif; font-size: 17px; font-weight: 600; line-height: 20.4px; }
+.brand strong { color: #18b985; }
+.signup-card { padding: 29px 24px; border: 1px solid #000; border-radius: 23px; background: #fffefd; }
+h1 { margin: 0 0 19px; font-family: "Freesentation-6SemiBold", Helvetica, sans-serif; font-size: 24px; font-weight: 600; line-height: 26px; }
+form { display: flex; flex-direction: column; gap: 15px; }
+.field { position: relative; display: flex; height: 49px; }
+.field img { position: absolute; left: 13px; top: 17px; width: 18px; height: 16px; object-fit: contain; pointer-events: none; }
+input { width: 100%; min-width: 0; border: .5px solid #edeff3; border-radius: 10px; background: #f6f8f9; padding: 0 12px 0 59px; font: 500 17px "Freesentation-5Medium", Helvetica, sans-serif; color: #000; }
+input::placeholder { color: #00000073; }
+input:focus-visible, a:focus-visible { outline: 2px solid #08b980; outline-offset: 3px; }
+button, .login-button { display: block; width: 100%; border: 0; border-radius: 15px; background: #08b980; color: #fcfdfc; padding: 13px 8px; font: 600 20px "Freesentation-6SemiBold", Helvetica, sans-serif; line-height: 23px; text-align: center; cursor: pointer; }
+button:disabled { opacity: .65; cursor: wait; }
+.hint { margin: -5px 0 -5px; color: #666; font-size: 12px; line-height: 16px; }
+.error { margin: 0; color: #b42318; font-size: 14px; line-height: 1.4; }
+.login-link { text-align: center; font-size: 14px; margin: 18px 0 0; color: #666; }
+.login-link a { margin-left: 6px; color: #087b58; text-decoration: underline; }
+#signupSuccess p { margin: 0 0 24px; font-size: 17px; line-height: 1.6; }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+@media (max-width: 360px) { .signup-page { padding-left: 16px; padding-right: 16px; } .signup-card { padding-left: 18px; padding-right: 18px; } .brand p { font-size: 15px; } }
