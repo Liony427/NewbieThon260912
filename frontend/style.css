@@ -285,3 +285,169 @@
 .element .line {
   top: 534px;
 }
+
+/* ===== 로그인 화면 반응형 수정 ===== */
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #fcfdfc;
+}
+
+/* 기존 width: 402px, height: 874px 덮어쓰기 */
+.element {
+  position: relative;
+
+  width: 100%;
+  max-width: 600px;
+
+  height: auto;
+  min-height: max(100svh, 700px);
+
+  margin-inline: auto;
+}
+
+/* 내부 요소들이 .element를 기준으로 배치되도록 변경 */
+.element .group,
+.element .div {
+  position: static;
+
+  width: auto;
+  height: auto;
+}
+
+/* 로고 */
+.element .logo {
+  top: 93px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(281px, calc(100% - 40px));
+  height: auto;
+
+  object-fit: contain;
+}
+
+/* 소개 문구 */
+.element .p {
+  top: 320px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: calc(100% - 40px);
+  text-align: center;
+
+  white-space: normal;
+  line-height: 1.4;
+}
+
+/* 로그인 카드 바깥 테두리 */
+.element .rectangle {
+  top: 395px;
+  left: 24px;
+
+  width: calc(100% - 48px);
+  height: 276px;
+}
+
+/* 이메일·비밀번호·로그인 버튼 배경 */
+.element .rectangle-2,
+.element .rectangle-3,
+.element .rectangle-4 {
+  left: 50px;
+
+  width: calc(100% - 100px);
+  height: 49px;
+}
+
+.element .rectangle-2 {
+  top: 429px;
+}
+
+.element .rectangle-3 {
+  top: 493px;
+}
+
+.element .rectangle-4 {
+  top: 557px;
+}
+
+/* 이메일 아이콘 */
+.element .carbon-email {
+  top: 444px;
+  left: 63px;
+
+  width: 20px;
+  height: 20px;
+}
+
+/* 비밀번호 아이콘 */
+.element .at-icons-lock {
+  top: 508px;
+  left: 64px;
+
+  width: 20px;
+  height: 20px;
+}
+
+/* 이메일 글씨 */
+.element .text-wrapper-7 {
+  top: 444px;
+  left: 110px;
+}
+
+/* 비밀번호 글씨 */
+.element .text-wrapper-6 {
+  top: 508px;
+  left: 110px;
+}
+
+/* 로그인 글씨를 버튼 중앙에 배치 */
+.element .text-wrapper-5 {
+  top: 557px;
+  left: 50px;
+
+  width: calc(100% - 100px);
+  height: 49px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 회원가입 */
+.element .text-wrapper-3 {
+  top: 630px;
+  left: calc(50% - 114px);
+}
+
+/* 비밀번호 찾기 */
+.element .text-wrapper-4 {
+  top: 630px;
+  left: calc(50% + 40px);
+}
+
+/* 회원가입과 비밀번호 찾기 사이 구분선 */
+.element .line {
+  position: absolute;
+  top: 627px;
+  left: 50%;
+
+  width: 1px;
+  height: 20px;
+
+  background: #b5b5b5;
+}
+
+/* 예약·반납과 같은 PC 바깥 배경 */
+@media (min-width: 601px) {
+  html,
+  body {
+    background: #eef0ef;
+  }
+
+  .element {
+    box-shadow: 0 0 0 1px #e2e5e3;
+  }
+}
