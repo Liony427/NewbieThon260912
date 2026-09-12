@@ -2,11 +2,10 @@ from fastapi import FastAPI
 
 from backend.database import Base, engine
 from backend import models
-from backend.routers import matching
+from backend.routers import matching, reservations
 
 
 Base.metadata.create_all(bind=engine)
-
 
 app = FastAPI(
     title="자전거 바톤터치 API",
@@ -15,6 +14,7 @@ app = FastAPI(
 
 
 app.include_router(matching.router)
+app.include_router(reservations.router)
 
 
 @app.get("/")
