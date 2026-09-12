@@ -373,3 +373,14 @@
   line-height: 18px;
   white-space: nowrap;
 }
+
+/* 카카오 지도 영역 */
+#map {
+  top: 90px !important;
+  left: 0 !important;
+
+  width: 402px !important;
+  height: 463px !important;
+
+  position: absolute !important;
+}

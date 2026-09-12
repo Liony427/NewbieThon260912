@@ -495,3 +495,104 @@
   font-family: "Freesentation-7Bold", Helvetica;
   font-weight: 700;
 }
+.term-checkbox {
+  cursor: pointer;
+}
+
+.term-checkbox.checked {
+  background-color: #18BA86 !important;
+}
+
+#paymentButton,
+#backButton {
+  cursor: pointer;
+}
+
+#reservationAddress {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ========================================
+   Page2 화면 보정
+   ======================================== */
+
+
+/* 1. 예약 정보 오른쪽 값 진하게 */
+#reservationAddress,
+#reservationRadius,
+#reservationDuration {
+  color: #333333 !important;
+  font-weight: 500;
+}
+
+
+/* 2. 총 결제 금액 표시 */
+#totalPrice {
+  color: #18BA86 !important;
+  font-weight: 700;
+}
+
+
+/* 3. 약관 체크박스 크기/위치 통일 */
+.term-checkbox {
+  width: 17px !important;
+  height: 17px !important;
+  left: 34px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background-color: #ffffff;
+  border: 1px solid #d9dde3;
+  border-radius: 3px;
+
+  cursor: pointer;
+}
+
+
+/* 체크됐을 때 */
+.term-checkbox.checked {
+  background-color: #18BA86 !important;
+  border-color: #18BA86 !important;
+}
+
+
+/* 체크 아이콘 가운데 정렬 */
+.term-checkbox .vector-5 {
+  width: 10px !important;
+  height: auto !important;
+  margin: 0 !important;
+  flex: none !important;
+}
+
+
+/* 각 체크박스 세로 위치 */
+.element .group-8 {
+  top: 61px !important;
+}
+
+.element .group-9 {
+  top: 85px !important;
+}
+
+.element .group-10 {
+  top: 109px !important;
+}
+
+.element .group-11 {
+  top: 133px !important;
+}
+
+
+/* 약관 문구 시작 위치 통일 */
+.element .text-wrapper-10,
+.element .p,
+.element .text-wrapper-11,
+.element .text-wrapper-12 {
+  left: 62px !important;
+  width: 210px !important;
+}

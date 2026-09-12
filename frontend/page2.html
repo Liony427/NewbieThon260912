@@ -1,48 +1,229 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="page2G.css">
-<link rel="stylesheet" href="page2S.css">
-<link rel="stylesheet" href="page2.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="page2G.css">
+  <link rel="stylesheet" href="page2S.css">
+  <link rel="stylesheet" href="page2.css">
 </head>
+
 <body>
-<div class="element" ><img class="logo" src="img/logo.png" />
-<div class="group" ><div class="div" ><div class="group-2" ><div class="text-wrapper" >위치</div>
-<div class="text-wrapper-2" >성북구 어쩌고 저쩌고</div>
-<div class="group-3" ><img class="vector" src="img/vector-9.svg" />
-<img class="img" src="img/vector-3.svg" /></div></div>
-<img class="line" src="img/line-3.svg" />
-<div class="group-4" ><div class="text-wrapper-3" >300m</div>
-<div class="text-wrapper" >반경</div>
-<img class="vector-2" src="img/vector.svg" /></div>
-<img class="line" src="img/line-4.svg" />
-<div class="group-5" ><div class="text-wrapper-4" >30분</div>
-<div class="text-wrapper-5" >유지 시간</div>
-<div class="vector-wrapper" ><img class="vector-3" src="img/vector-2.svg" /></div></div></div></div>
-<div class="group-6" ><div class="rectangle" ></div>
-<div class="text-wrapper-6" >다른 결제 수단</div>
-<div class="rectangle-2" ></div>
-<div class="text-wrapper-7" >Kakao Pay</div>
-<div class="text-wrapper-8" >결제 수단</div>
-<div class="img-wrapper" ><img class="vector-4" src="img/image.svg" /></div></div>
-<div class="group-7" ><div class="rectangle-3" ></div>
-<div class="text-wrapper-9" >555원</div>
-<div class="rectangle-4" ></div>
-<div class="group-8" ><img class="vector-5" src="img/vector-4.svg" /></div>
-<div class="text-wrapper-8" >총 결제 금액</div>
-<div class="text-wrapper-10" >[필수] 서비스 이용약관에 동의합니다.</div>
-<div class="group-9" ><img class="vector-5" src="img/vector-5.svg" /></div>
-<p class="p" >[필수] 개인정보 수집 및 이용에 동의합니다.</p>
-<div class="group-10" ><img class="vector-5" src="img/vector-8.svg" /></div>
-<div class="text-wrapper-11" >[필수] 위치기반서비스 이용약관에 동의합니다.</div>
-<div class="group-11" ><img class="vector-5" src="img/vector-6.svg" /></div>
-<p class="text-wrapper-12" >[필수] 결제 및 환불 정책에 동의합니다.</p></div>
-<div class="frame" ><div class="text-wrapper-13" >결제하기</div></div>
-<div class="text-wrapper-14" >← 돌아가기</div>
-<p class="div-2" ><span class="span" >|&nbsp;&nbsp;</span>
-<span class="text-wrapper-15" > 예약하기</span></p></div>
+
+<div class="element">
+
+  <img
+    class="logo"
+    src="img/logo.png"
+    alt="바톤터치 로고"
+  />
+
+
+  <!-- 예약 정보 -->
+  <div class="group">
+
+    <div class="div">
+
+      <!-- 위치 -->
+      <div class="group-2">
+
+        <div class="text-wrapper">
+          위치
+        </div>
+
+        <div
+          class="text-wrapper-2"
+          id="reservationAddress"
+        >
+          -
+        </div>
+
+        <div class="group-3">
+          <img class="vector" src="img/vector-9.svg" />
+          <img class="img" src="img/vector-3.svg" />
+        </div>
+
+      </div>
+
+
+      <img class="line" src="img/line-3.svg" />
+
+
+      <!-- 반경 -->
+      <div class="group-4">
+
+        <div
+          class="text-wrapper-3"
+          id="reservationRadius"
+        >
+          -
+        </div>
+
+        <div class="text-wrapper">
+          반경
+        </div>
+
+        <img class="vector-2" src="img/vector.svg" />
+
+      </div>
+
+
+      <img class="line" src="img/line-4.svg" />
+
+
+      <!-- 유지 시간 -->
+      <div class="group-5">
+
+        <div
+          class="text-wrapper-4"
+          id="reservationDuration"
+        >
+          -
+        </div>
+
+        <div class="text-wrapper-5">
+          유지 시간
+        </div>
+
+        <div class="vector-wrapper">
+          <img class="vector-3" src="img/vector-2.svg" />
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- 결제 수단 -->
+  <div class="group-6">
+
+    <div class="rectangle"></div>
+
+    <div class="text-wrapper-6">
+      다른 결제 수단
+    </div>
+
+    <div class="rectangle-2"></div>
+
+    <div class="text-wrapper-7">
+      Kakao Pay
+    </div>
+
+    <div class="text-wrapper-8">
+      결제 수단
+    </div>
+
+    <div class="img-wrapper">
+      <img class="vector-4" src="img/image.svg" />
+    </div>
+
+  </div>
+
+
+  <!-- 결제 금액 및 약관 -->
+  <div class="group-7">
+
+    <div class="rectangle-3"></div>
+
+    <div
+      class="text-wrapper-9"
+      id="totalPrice"
+    >
+      계산 중...
+    </div>
+
+    <div class="rectangle-4"></div>
+
+
+    <!-- 약관 1 -->
+    <div
+      class="group-8 term-checkbox"
+      data-term="service"
+    >
+      <img class="vector-5" src="img/vector-4.svg" />
+    </div>
+
+    <div class="text-wrapper-10">
+      [필수] 서비스 이용약관에 동의합니다.
+    </div>
+
+
+    <!-- 약관 2 -->
+    <div
+      class="group-9 term-checkbox"
+      data-term="privacy"
+    >
+      <img class="vector-5" src="img/vector-5.svg" />
+    </div>
+
+    <p class="p">
+      [필수] 개인정보 수집 및 이용에 동의합니다.
+    </p>
+
+
+    <!-- 약관 3 -->
+    <div
+      class="group-10 term-checkbox"
+      data-term="location"
+    >
+      <img class="vector-5" src="img/vector-8.svg" />
+    </div>
+
+    <div class="text-wrapper-11">
+      [필수] 위치기반서비스 이용약관에 동의합니다.
+    </div>
+
+
+    <!-- 약관 4 -->
+    <div
+      class="group-11 term-checkbox"
+      data-term="payment"
+    >
+      <img class="vector-5" src="img/vector-6.svg" />
+    </div>
+
+    <p class="text-wrapper-12">
+      [필수] 결제 및 환불 정책에 동의합니다.
+    </p>
+
+  </div>
+
+
+  <!-- 결제 -->
+  <div
+    class="frame"
+    id="paymentButton"
+  >
+    <div class="text-wrapper-13">
+      결제하기
+    </div>
+  </div>
+
+
+  <!-- 돌아가기 -->
+  <div
+    class="text-wrapper-14"
+    id="backButton"
+  >
+    ← 돌아가기
+  </div>
+
+
+  <p class="div-2">
+    <span class="span">|&nbsp;&nbsp;</span>
+    <span class="text-wrapper-15">
+      예약하기
+    </span>
+  </p>
+
+</div>
+
+
+<script src="page2.js"></script>
+
 </body>
 </html>
