@@ -1,0 +1,287 @@
+.element {
+  position: relative;
+  width: 402px;
+  height: 874px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(250, 250, 250, 0.1) 31%,
+      rgba(24, 186, 134, 0.01) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(252, 253, 252, 1) 0%,
+      rgba(252, 253, 252, 1) 100%
+    );
+  background-color: var(--mn-7-fv-r);
+}
+
+.element .rectangle {
+  position: absolute;
+  top: 395px;
+  left: 24px;
+  width: 353px;
+  height: 276px;
+  background-color: #fffefd;
+  border-radius: 23px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.element .group {
+  position: absolute;
+  width: 91.45%;
+  height: 63.73%;
+  top: 10.64%;
+  left: 4.23%;
+}
+
+.element .div {
+  position: absolute;
+  top: 0;
+  left: 46px;
+  width: 287px;
+  height: 557px;
+}
+
+.element .logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 281px;
+  height: 281px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.element .p {
+  top: 227px;
+  left: calc(50.00% - 106px);
+  font-family: "Freesentation-SemiBold", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 20.4px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.element .text-wrapper {
+  font-weight: 600;
+  color: #000000;
+}
+
+.element .span {
+  font-family: "Freesentation-Regular", Helvetica;
+  color: #000000;
+}
+
+.element .text-wrapper-2 {
+  font-weight: 600;
+  color: #18b985;
+}
+
+.element .text-wrapper-3 {
+  top: 537px;
+  left: calc(50.00% - 114px);
+  font-family: "Freesentation-6SemiBold", Helvetica;
+  font-weight: 600;
+  color: #0a0a0a;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 20.4px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.element .text-wrapper-4 {
+  top: 537px;
+  left: calc(50.00% + 40px);
+  font-family: "Freesentation-6SemiBold", Helvetica;
+  font-weight: 600;
+  color: #0a0a0a;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 20.4px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.element .vector {
+  position: absolute;
+  width: 17.30%;
+  height: 88.15%;
+  top: 11.85%;
+  left: 82.70%;
+}
+
+.element .img {
+  position: absolute;
+  width: 100%;
+  height: 75.76%;
+  top: 24.24%;
+  left: 0;
+}
+
+.element .rectangle-2 {
+  position: absolute;
+  top: 429px;
+  left: 50px;
+  width: 302px;
+  height: 49px;
+  background-color: #f6f8f9;
+  border-radius: 10px;
+  border: 0.5px solid;
+  border-color: #edeff3;
+}
+
+.element .rectangle-3 {
+  position: absolute;
+  top: 493px;
+  left: 50px;
+  width: 302px;
+  height: 49px;
+  background-color: #f6f8f9;
+  border-radius: 10px;
+  border: 0.5px solid;
+  border-color: #edeff3;
+}
+
+.element .rectangle-4 {
+  position: absolute;
+  top: 557px;
+  left: 50px;
+  width: 302px;
+  height: 49px;
+  background-color: #08b980;
+  border-radius: 15px;
+  border: 0.5px solid;
+  border-color: #edeff3;
+}
+
+.element .line {
+  position: absolute;
+  top: 627px;
+  left: 50.00%;
+  width: 1px;
+  height: 20px;
+  object-fit: cover;
+}
+
+.element .text-wrapper-5 {
+  top: 569px;
+  left: calc(50.00% - 24px);
+  font-family: "Freesentation-6SemiBold", Helvetica;
+  font-weight: 600;
+  color: #fcfdfc;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 24px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.element .text-wrapper-6 {
+  top: 508px;
+  left: calc(50.00% - 91px);
+  font-family: "Freesentation-5Medium", Helvetica;
+  font-weight: 500;
+  color: #00000073;
+  font-size: 17px;
+  letter-spacing: 0.85px;
+  line-height: 20.4px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.element .text-wrapper-7 {
+  top: 444px;
+  left: calc(50.00% - 91px);
+  font-family: "Freesentation-5Medium", Helvetica;
+  font-weight: 500;
+  color: #00000073;
+  font-size: 17px;
+  letter-spacing: 0.85px;
+  line-height: 20.4px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.element .carbon-email {
+  position: absolute;
+  top: 444px;
+  left: 63px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+}
+
+.element .vector-2 {
+  flex: 1;
+  width: 17.5px;
+}
+
+.element .at-icons-lock {
+  position: absolute;
+  top: 508px;
+  left: 64px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  aspect-ratio: 1;
+}
+
+.element .vector-3 {
+  flex: 1;
+  width: 15px;
+}
+
+/* 로그인 입력창 위치 수정 */
+.element .rectangle-2 {
+  top: 336px;
+  left: 33px;
+}
+
+.element .rectangle-3 {
+  top: 400px;
+  left: 33px;
+}
+
+.element .rectangle-4 {
+  top: 464px;
+  left: 33px;
+}
+
+/* 이메일 글씨 */
+.element .text-wrapper-7 {
+  top: 351px;
+}
+
+/* 비밀번호 글씨 */
+.element .text-wrapper-6 {
+  top: 415px;
+}
+
+/* 로그인 글씨 */
+.element .text-wrapper-5 {
+  top: 476px;
+}
+
+/* 이메일 아이콘 */
+.element .carbon-email {
+  top: 351px;
+  left: 46px;
+}
+
+/* 비밀번호 아이콘 */
+.element .at-icons-lock {
+  top: 415px;
+  left: 47px;
+}
+
+/* 회원가입과 비밀번호 찾기 사이 선 */
+.element .line {
+  top: 534px;
+}
